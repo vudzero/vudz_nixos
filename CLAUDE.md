@@ -10,14 +10,14 @@ This is a git-tracked NixOS system configuration repository for a Parallels VM r
 
 - `configuration.nix` - Main system configuration file
 - `hardware-configuration.nix` - Hardware-specific settings (typically auto-generated, but tracked in git)
-- `deploy.sh` - Deployment script that copies configuration to /etc/nixos/ and applies changes
+- `deploy-nixos.sh` - Deployment script that copies configuration to /etc/nixos/ and applies changes
 
 ## Deployment Workflow
 
 This repository serves as the source of truth for the NixOS configuration. The workflow is:
 
 1. Edit configuration files in this git repository
-2. Run `./deploy.sh` to:
+2. Run `./deploy-nixos.sh` to:
    - Copy `configuration.nix` to `/etc/nixos/configuration.nix`
    - Copy `hardware-configuration.nix` to `/etc/nixos/hardware-configuration.nix`
    - Execute `sudo nixos-rebuild switch` to apply changes
@@ -26,7 +26,7 @@ This repository serves as the source of truth for the NixOS configuration. The w
 
 ```bash
 # Deploy configuration changes
-./deploy.sh
+./deploy-nixos.sh
 
 # Test configuration without deploying (manual process)
 sudo cp configuration.nix /etc/nixos/configuration.nix
@@ -71,7 +71,7 @@ Sway is configured with GTK wrappers enabled and includes the Adwaita icon theme
 
 To add new packages:
 1. Edit `configuration.nix` and add the package name to `environment.systemPackages`
-2. Run `./deploy.sh` to apply changes
+2. Run `./deploy-nixos.sh` to apply changes
 3. Commit the changes to git
 
 The state version (currently 25.11) should not be changed without reading NixOS documentation.

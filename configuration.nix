@@ -63,7 +63,6 @@
    ly
    neovim
    zsh
-   hyprland
    kitty
    alacritty
    ghostty
@@ -73,6 +72,8 @@
    sway
    vscode
    tmux
+   wl-clipboard
+   wtype
 
    # Flaxe packages
    (builtins.getFlake "github:sadjow/claude-code-nix").packages.${pkgs.system}.default
@@ -98,7 +99,17 @@
       adwaita-icon-theme # Ensure this is present
     ];
   };
-  
+
+  # Configure xdg-desktop-portal for Wayland
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
+    ];
+  };
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
