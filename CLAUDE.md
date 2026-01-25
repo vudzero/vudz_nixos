@@ -4,14 +4,38 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a NixOS system configuration repository for a Parallels VM running on aarch64-linux architecture. The setup uses experimental Nix features (flakes and nix-command) and is configured for a Wayland-based environment with Sway/Hyprland window managers.
+This is a git-tracked NixOS system configuration repository for a Parallels VM running on aarch64-linux architecture. The setup uses experimental Nix features (flakes and nix-command) and is configured for a Wayland-based environment with Sway/Hyprland window managers.
 
-## System Configuration Structure
+## Repository Structure
 
 - `configuration.nix` - Main system configuration file
-- `hardware-configuration.nix` - Auto-generated hardware-specific settings (do NOT modify directly)
+- `hardware-configuration.nix` - Hardware-specific settings (typically auto-generated, but tracked in git)
+- `deploy.sh` - Deployment script that copies configuration to /etc/nixos/ and applies changes
 
-The `configuration.nix` imports `hardware-configuration.nix` automatically.
+## Deployment Workflow
+
+This repository serves as the source of truth for the NixOS configuration. The workflow is:
+
+1. Edit configuration files in this git repository
+2. Run `./deploy.sh` to:
+   - Copy `configuration.nix` to `/etc/nixos/configuration.nix`
+   - Copy `hardware-configuration.nix` to `/etc/nixos/hardware-configuration.nix`
+   - Execute `sudo nixos-rebuild switch` to apply changes
+
+### Common Commands
+
+```bash
+# Deploy configuration changes
+./deploy.sh
+
+# Test configuration without deploying (manual process)
+sudo cp configuration.nix /etc/nixos/configuration.nix
+sudo cp hardware-configuration.nix /etc/nixos/hardware-configuration.nix
+sudo nixos-rebuild build
+
+# Search for packages
+nix search nixpkgs <package-name>
+```
 
 ## Key System Characteristics
 
@@ -24,36 +48,6 @@ The `configuration.nix` imports `hardware-configuration.nix` automatically.
 - **Display Manager**: ly
 - **Window Managers**: Sway and Hyprland (Wayland compositors)
 
-## Common Commands
-
-### Applying Configuration Changes
-
-```bash
-# Build and activate new configuration (requires sudo)
-sudo nixos-rebuild switch
-
-# Build without activating (test configuration)
-sudo nixos-rebuild build
-
-# Test configuration temporarily (reverts on reboot)
-sudo nixos-rebuild test
-```
-
-### Package Management
-
-```bash
-# Search for packages
-nix search nixpkgs <package-name>
-
-# Install packages by adding to environment.systemPackages in configuration.nix
-# Then run: sudo nixos-rebuild switch
-```
-
-### Flake Operations
-
-This system has experimental flakes enabled. The configuration references a flake package:
-- `github:sadjow/claude-code-nix` (Claude Code Nix package)
-
 ## Important Configuration Details
 
 ### Unfree Packages
@@ -62,21 +56,22 @@ This system has experimental flakes enabled. The configuration references a flak
 - Parallels tools are allowed via a predicate in `hardware-configuration.nix`
 
 ### Wayland Environment Variables
-The following environment variables are set for Wayland compatibility:
-- `WLR_NO_HARDWARE_CURSORS = "1"` (required for some VMs)
+The following environment variables are set for Wayland/VM compatibility:
+- `WLR_NO_HARDWARE_CURSORS = "1"` (required for Parallels VM)
 - `XCURSOR_SIZE = "48"`
 - `XCURSOR_THEME = "Adwaita"`
 
-### Installed Terminals
-Multiple terminal emulators are available: kitty, alacritty, ghostty
+### Flake Packages
+This configuration uses a flake package: `github:sadjow/claude-code-nix` for Claude Code.
 
 ### Sway Configuration
 Sway is configured with GTK wrappers enabled and includes the Adwaita icon theme.
 
-## Modifying the System
+## Adding Packages
 
-When making changes:
-1. Edit `configuration.nix` (never modify `hardware-configuration.nix`)
-2. Test the configuration with `sudo nixos-rebuild build`
-3. Apply changes with `sudo nixos-rebuild switch`
-4. Respect the state version (currently 25.11) - do not change without reading NixOS documentation
+To add new packages:
+1. Edit `configuration.nix` and add the package name to `environment.systemPackages`
+2. Run `./deploy.sh` to apply changes
+3. Commit the changes to git
+
+The state version (currently 25.11) should not be changed without reading NixOS documentation.
