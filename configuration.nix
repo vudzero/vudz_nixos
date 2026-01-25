@@ -55,6 +55,9 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     XCURSOR_SIZE = "48";
     XCURSOR_THEME = "Adwaita";
+    # Force Electron apps (like VSCode) to use Wayland and proper scaling
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
 
   # List packages installed in system profile. To search, run:
@@ -63,9 +66,7 @@
    ly
    neovim
    zsh
-   kitty
    alacritty
-   ghostty
    chromium
    waybar
    git
@@ -74,6 +75,8 @@
    tmux
    wl-clipboard
    wtype
+   dotnet-sdk_10
+   rofi
 
    # Flaxe packages
    (builtins.getFlake "github:sadjow/claude-code-nix").packages.${pkgs.system}.default

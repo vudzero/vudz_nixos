@@ -6,6 +6,16 @@ exec env WLR_NO_HARDWARE_CURSORS=1
 
 seat * xcursor_theme default 128
 
+# Minimal borders to show focused window
+default_border pixel 2
+default_floating_border pixel 2
+
+# Border colors (focused window will be highlighted)
+client.focused          #0080ff #0080ff #ffffff #0080ff #0080ff
+client.focused_inactive #333333 #333333 #888888 #333333 #333333
+client.unfocused        #333333 #333333 #888888 #333333 #333333
+client.urgent           #ff0000 #ff0000 #ffffff #ff0000 #ff0000
+
 # Gaps
 gaps inner 10
 
@@ -23,17 +33,21 @@ bindsym $mod+Return exec $term
 # Launch browser
 bindsym $mod+b exec chromium
 
-# Launch appplication launcher
-bindsym $mod+d exec rofi --show drun
+# Launch application launcher
+bindsym $mod+Shift+space exec rofi -show drun
 
 # Close window
 bindsym $mod+q kill
+
+# Copy/Paste
+bindsym $mod+c exec wtype -M ctrl -M shift c -m shift -m ctrl
+bindsym $mod+v exec wtype -M ctrl -M shift v -m shift -m ctrl
 
 # Reload config
 bindsym $mod+Shift+r reload
 
 # Exit sway
-bindsym $mod+Shift+q swaymsg exit
+bindsym $mod+Shift+q exec swaymsg exit
 
 ### Workspace Controls
 
@@ -66,9 +80,10 @@ bar {
 
 ### Boot setup
 
-assign [app_id="chromium-browser"] 2
-assign [app_id="Alacritty"] 1
+# Properly announce Wayland session to systemd for XDG desktop portal
+exec systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-exec $term
-exec chromium
+# Launch terminal on workspace 1 and chromium on workspace 2 at boot, then focus back to workspace 1
+exec bash -c 'swaymsg "workspace 1; exec $term"; sleep 0.5; swaymsg "workspace 2; exec chromium"; sleep 0.5; swaymsg "workspace 1"'
 
