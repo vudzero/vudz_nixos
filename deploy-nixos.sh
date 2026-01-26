@@ -4,7 +4,13 @@ set -e
 
 echo "Copying configuration files to /etc/nixos/..."
 sudo cp configuration.nix /etc/nixos/configuration.nix
-sudo cp hardware-configuration.nix /etc/nixos/hardware-configuration.nix
+
+# Note: hardware-configuration.nix is NOT copied - each machine generates its own
+if [ ! -f /etc/nixos/hardware-configuration.nix ]; then
+    echo "WARNING: /etc/nixos/hardware-configuration.nix does not exist!"
+    echo "Generate it with: sudo nixos-generate-config"
+    exit 1
+fi
 
 echo "Deploying NixOS configuration..."
 # Always enable experimental features to ensure flakes work
