@@ -1,14 +1,13 @@
 {
   "layer": "top",
   "position": "top",
-  "output": "Virtual-1",
   "height": 30,
   "spacing": 4,
 
-  "modules-left": ["sway/workspaces"],
-  "modules-right": ["clock"],
+  "modules-left": ["hyprland/workspaces"],
+  "modules-right": ["cpu", "custom/gpu", "pulseaudio", "clock"],
 
-  "sway/workspaces": {
+  "hyprland/workspaces": {
     "disable-scroll": true,
     "format": "{name}",
     "all-outputs": true,
@@ -18,6 +17,27 @@
       "3": [],
       "4": []
     }
+  },
+
+  "cpu": {
+    "format": "CPU {usage}%",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "custom/gpu": {
+    "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk '{print \"GPU \" $1\"%\"}'",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "🔇 {volume}%",
+    "format-icons": {
+      "default": ["🔈", "🔉", "🔊"]
+    },
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
   },
 
   "clock": {

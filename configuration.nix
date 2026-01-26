@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./nvidia.nix
     ];
 
   # Enable flake
@@ -53,9 +54,10 @@
   nixpkgs.config.chromium.enableWideVine = true;
 
   environment.variables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-    XCURSOR_SIZE = "48";
-    XCURSOR_THEME = "Adwaita";
+    # WLR_NO_HARDWARE_CURSORS = "1";
+    # XCURSOR_SIZE = "48";
+    # XCURSOR_THEME = "Adwaita";
+    
     # Force Electron apps (like VSCode) to use Wayland and proper scaling
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
@@ -74,13 +76,19 @@
    chromium
    waybar
    git
-   sway
    vscode
    tmux
    wl-clipboard
    wtype
    dotnet-sdk_10
    rofi
+   hypridle    # Idle management for Hyprland
+   hyprlock    # Screen locker for Hyprland
+   hyprcursor  # Cursor theme system for Hyprland
+   rose-pine-hyprcursor  # Rose Pine cursor theme for hyprcursor
+   mako        # Notification daemon for Wayland
+   spotify
+   playerctl   # Media player control for Spotify and other players
 
    # Flaxe packages
    (builtins.getFlake "github:sadjow/claude-code-nix").packages.${pkgs.system}.default
@@ -101,13 +109,10 @@
   # List services that you want to enable:
   services.xserver.enable = true;
   services.displayManager.ly.enable = true;
-  
-  programs.sway = {
+
+  programs.hyprland = {
     enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-      adwaita-icon-theme # Ensure this is present
-    ];
+    xwayland.enable = true;
   };
 
   # Configure xdg-desktop-portal for Wayland

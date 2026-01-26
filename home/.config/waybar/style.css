@@ -17,9 +17,25 @@ window#waybar {
   border-radius: 4px;
 }
 
-#workspaces button.focused {
+#workspaces button.focused,
+#workspaces button.active {
   background: #64727D;
   border-bottom: 2px solid #ffffff;
+}
+
+#cpu {
+  color: #ffffff;
+  padding: 0 10px;
+}
+
+#custom-gpu {
+  color: #ffffff;
+  padding: 0 10px;
+}
+
+#pulseaudio {
+  color: #ffffff;
+  padding: 0 10px;
 }
 
 #clock {

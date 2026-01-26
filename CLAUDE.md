@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a git-tracked NixOS system configuration repository that can be deployed across multiple machines. The setup uses experimental Nix features (flakes and nix-command) and is configured for a Wayland-based environment with Sway/Hyprland window managers.
+This is a git-tracked NixOS system configuration repository that can be deployed across multiple machines. The setup uses experimental Nix features (flakes and nix-command) and is configured for a Wayland-based environment with Hyprland window manager.
 
 ## Repository Structure
 
@@ -54,7 +54,7 @@ nix search nixpkgs <package-name>
 - **Timezone**: America/Toronto
 - **Locale**: en_CA.UTF-8
 - **Display Manager**: ly
-- **Window Managers**: Sway and Hyprland (Wayland compositors)
+- **Window Manager**: Hyprland (Wayland compositor)
 
 ## Important Configuration Details
 
@@ -71,8 +71,12 @@ The following environment variables are set for Wayland compatibility:
 ### Flake Packages
 This configuration uses a flake package: `github:sadjow/claude-code-nix` for Claude Code.
 
-### Sway Configuration
-Sway is configured with GTK wrappers enabled and includes the Adwaita icon theme.
+### Hyprland Configuration
+Hyprland is configured with:
+- Idle management via `hypridle` (turns off display after 10 minutes, suspends after 15 minutes)
+- Screen locking via `hyprlock`
+- Auto-start of waybar, terminal, and browser
+- Configuration files located in `home/.config/hypr/`
 
 ## Adding Packages
 

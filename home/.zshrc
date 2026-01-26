@@ -26,6 +26,7 @@ else
 fi
 
 # Load zsh-autosuggestions (fish-like autosuggestions from history)
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 if [ -f /run/current-system/sw/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
   source /run/current-system/sw/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
@@ -37,8 +38,13 @@ if [ -n "$ZSH_SYNTAX_HIGHLIGHTING" ]; then
 fi
 
 # Completion settings (ensure they're enabled after oh-my-zsh loads)
+# Only regenerate completion dump once per day for faster startup
 autoload -Uz compinit
-compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C  # Skip security check for faster startup
+fi
 
 # Case-insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
