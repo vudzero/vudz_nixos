@@ -7,8 +7,8 @@ sudo cp configuration.nix /etc/nixos/configuration.nix
 sudo cp hardware-configuration.nix /etc/nixos/hardware-configuration.nix
 
 echo "Deploying NixOS configuration..."
-# Always use --extra-experimental-features to ensure flakes work
+# Always enable experimental features to ensure flakes work
 # This is safe to use even if flakes are already enabled system-wide
-sudo nixos-rebuild switch --extra-experimental-features "nix-command flakes"
+sudo nixos-rebuild switch --option experimental-features "nix-command flakes"
 
 echo "Deployment complete!"
