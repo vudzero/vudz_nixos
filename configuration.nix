@@ -89,6 +89,11 @@
    mako        # Notification daemon for Wayland
    spotify
    playerctl   # Media player control for Spotify and other players
+   grim        # Screenshot tool for Wayland
+   slurp       # Select a region in Wayland compositors
+   swappy      # Wayland native snapshot editing tool
+   imv         # Lightweight image viewer for Wayland
+   mpv         # Lightweight video player for Wayland
 
    # Flaxe packages
    (builtins.getFlake "github:sadjow/claude-code-nix").packages.${pkgs.system}.default
@@ -124,6 +129,11 @@
       xdg-desktop-portal-gtk
     ];
   };
+
+  # Ensure user directories exist
+  systemd.tmpfiles.rules = [
+    "d /home/matx/Pictures 0755 matx users -"
+  ];
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
