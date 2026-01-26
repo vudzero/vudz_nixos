@@ -1,9 +1,0 @@
-[user]
-  name = Mathieux Bergeron
-  email = mathieuxxxx@gmail.com
-[init]
-  defaultBranch = development
-[pull]
-  rebase = true
-[core]
-  filemode = false
