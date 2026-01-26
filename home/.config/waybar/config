@@ -1,0 +1,27 @@
+{
+  "layer": "top",
+  "position": "top",
+  "output": "Virtual-1",
+  "height": 30,
+  "spacing": 4,
+
+  "modules-left": ["sway/workspaces"],
+  "modules-right": ["clock"],
+
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "format": "{name}",
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": []
+    }
+  },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%Y-%m-%d %H:%M:%S}"
+  }
+}

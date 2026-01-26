@@ -39,11 +39,12 @@
     variant = "";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.matx = {
     isNormalUser = true;
     description = "Mathieux Bergeron";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [];
   };
 
@@ -66,6 +67,9 @@
    ly
    neovim
    zsh
+   oh-my-zsh
+   zsh-autosuggestions
+   zsh-syntax-highlighting
    alacritty
    chromium
    waybar
@@ -82,6 +86,9 @@
    (builtins.getFlake "github:sadjow/claude-code-nix").packages.${pkgs.system}.default
 
   ];
+
+  # Enable zsh
+  programs.zsh.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

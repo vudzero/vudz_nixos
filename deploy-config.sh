@@ -3,25 +3,28 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SOURCE_CONFIG="$SCRIPT_DIR/.config"
-TARGET_CONFIG="$HOME/.config"
+SOURCE_HOME="$SCRIPT_DIR/home"
+TARGET_HOME="$HOME"
 
 echo "Deploying user configuration files..."
-echo "Source: $SOURCE_CONFIG"
-echo "Target: $TARGET_CONFIG"
+echo "Source: $SOURCE_HOME"
+echo "Target: $TARGET_HOME"
 echo ""
 
-# Create ~/.config if it doesn't exist
-mkdir -p "$TARGET_CONFIG"
+# Enable dotglob to match hidden files
+shopt -s dotglob
 
-# Copy all files and directories from .config to ~/.config
-for item in "$SOURCE_CONFIG"/*; do
+# Copy all files and directories from home to ~/
+for item in "$SOURCE_HOME"/*; do
     if [ -e "$item" ]; then
         basename_item=$(basename "$item")
         echo "Copying $basename_item..."
-        cp -r "$item" "$TARGET_CONFIG/"
+        cp -r "$item" "$TARGET_HOME/"
     fi
 done
+
+# Disable dotglob
+shopt -u dotglob
 
 echo ""
 echo "Configuration files deployed successfully!"
