@@ -44,13 +44,16 @@
   users.users.matx = {
     isNormalUser = true;
     description = "Mathieux Bergeron";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.nushell;
     packages = with pkgs; [];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Enable Docker
+  virtualisation.docker.enable = true;
 
   environment.variables = {
     # WLR_NO_HARDWARE_CURSORS = "1";
@@ -74,6 +77,7 @@
    nushell
    alacritty
    google-chrome
+   firefox
    waybar
    git
    vscode
@@ -81,6 +85,7 @@
    wl-clipboard
    wtype
    dotnet-sdk_10
+   jq          # JSON processor for scripts
    rofi
    hypridle    # Idle management for Hyprland
    hyprlock    # Screen locker for Hyprland
