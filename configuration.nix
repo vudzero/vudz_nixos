@@ -45,13 +45,12 @@
     isNormalUser = true;
     description = "Mathieux Bergeron";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
     packages = with pkgs; [];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.chromium.enableWideVine = true;
 
   environment.variables = {
     # WLR_NO_HARDWARE_CURSORS = "1";
@@ -72,8 +71,9 @@
    oh-my-zsh
    zsh-autosuggestions
    zsh-syntax-highlighting
+   nushell
    alacritty
-   chromium
+   google-chrome
    waybar
    git
    vscode
@@ -88,12 +88,15 @@
    rose-pine-hyprcursor  # Rose Pine cursor theme for hyprcursor
    mako        # Notification daemon for Wayland
    spotify
+   discord
    playerctl   # Media player control for Spotify and other players
    grim        # Screenshot tool for Wayland
    slurp       # Select a region in Wayland compositors
    swappy      # Wayland native snapshot editing tool
    imv         # Lightweight image viewer for Wayland
    mpv         # Lightweight video player for Wayland
+   nautilus    # GNOME Files file manager
+   carapace    # Multi-shell completion generator
 
    # Flaxe packages
    (builtins.getFlake "github:sadjow/claude-code-nix").packages.${pkgs.system}.default
@@ -118,6 +121,13 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+  };
+
+  # Enable Steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
 
   # Configure xdg-desktop-portal for Wayland

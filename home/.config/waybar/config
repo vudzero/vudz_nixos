@@ -5,7 +5,7 @@
   "spacing": 4,
 
   "modules-left": ["hyprland/workspaces"],
-  "modules-right": ["cpu", "custom/gpu", "pulseaudio", "clock"],
+  "modules-right": ["cpu", "custom/gpu", "memory", "disk", "pulseaudio", "clock"],
 
   "hyprland/workspaces": {
     "disable-scroll": true,
@@ -29,6 +29,19 @@
     "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk '{print \"GPU \" $1\"%\"}'",
     "interval": 2,
     "tooltip": false
+  },
+
+  "memory": {
+    "format": "RAM {used:0.1f}G",
+    "interval": 2,
+    "tooltip-format": "{used:0.1f}G / {total:0.1f}G ({percentage}%)"
+  },
+
+  "disk": {
+    "format": "Disk {percentage_used}%",
+    "interval": 30,
+    "path": "/",
+    "tooltip-format": "Used: {used} / {total}"
   },
 
   "pulseaudio": {
