@@ -6,6 +6,9 @@ echo "Copying configuration files to /etc/nixos/..."
 sudo cp configuration.nix /etc/nixos/configuration.nix
 sudo cp nvidia.nix /etc/nixos/nvidia.nix
 
+echo "Copying home configuration files..."
+cp -r home/.config/* ~/.config/
+
 # Note: hardware-configuration.nix is NOT copied - each machine generates its own
 if [ ! -f /etc/nixos/hardware-configuration.nix ]; then
     echo "WARNING: /etc/nixos/hardware-configuration.nix does not exist!"

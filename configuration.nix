@@ -96,6 +96,7 @@
    hyprcursor            # Cursor theme system for Hyprland
    rose-pine-hyprcursor  # Rose Pine cursor theme for hyprcursor
    mako                  # Notification daemon for Wayland
+   libnotify             # Send desktop notifications (provides notify-send)
    spotify               # Music player
    discord               # Chat tool
    playerctl             # Media player control for Spotify and other players
@@ -108,7 +109,6 @@
    carapace              # Multi-shell completion generator
    zsh-completions       # Additional zsh completion definitions
    blueman               # Bluetooth manager with system tray applet
-   pavucontrol           # PulseAudio/PipeWire volume control GUI
    mangohud              # Performance overlay for games
 
    # Flaxe packages
@@ -149,6 +149,18 @@
 
   # Enable blueman service for bluetooth management
   services.blueman.enable = true;
+
+  # Enable PipeWire audio service
+  services.pipewire = {
+    enable = true;
+    audio.enable = true;
+    pulse.enable = true;  # PulseAudio compatibility
+    alsa = {
+      enable = true;
+      support32Bit = true;  # For Steam games
+    };
+    wireplumber.enable = true;  # Session manager
+  };
 
   # Configure xdg-desktop-portal for Wayland
   xdg.portal = {

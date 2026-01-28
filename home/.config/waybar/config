@@ -64,8 +64,7 @@
     "format-icons": {
       "default": ["🔈", "🔉", "🔊"]
     },
-    "on-click": "pavucontrol",
-    "on-click-right": "~/.local/bin/volume-control-all toggle"
+    "on-click": "~/.config/hypr/audio-switcher.sh"
   },
 
   "clock": {
