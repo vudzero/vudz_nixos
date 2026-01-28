@@ -19,8 +19,9 @@
     # Modesetting is required for Wayland compositors
     modesetting.enable = true;
 
-    # Disable power management for desktop gaming (prevents GPU hangs)
-    powerManagement.enable = false;
+    # Enable power management (helps with laptop usage, generally safe for desktop too)
+    # Required for suspend/wake to work properly
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
 
     # Use the open source kernel module (recommended for RTX 4070 Ti)

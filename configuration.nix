@@ -14,8 +14,16 @@
   # Enable flake
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Automatic garbage collection to keep only last 5 generations
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than +5";  # Keep 5 most recent generations
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;  # Keep only last 5 generations in boot menu
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -80,6 +88,7 @@
    firefox
    waybar
    git
+   ripgrep
    vscode
    tmux
    wl-clipboard
@@ -89,6 +98,7 @@
    rofi
    hypridle    # Idle management for Hyprland
    hyprlock    # Screen locker for Hyprland
+   hyprpaper   # Wallpaper manager for Hyprland
    hyprcursor  # Cursor theme system for Hyprland
    rose-pine-hyprcursor  # Rose Pine cursor theme for hyprcursor
    mako        # Notification daemon for Wayland
