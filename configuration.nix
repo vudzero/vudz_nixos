@@ -27,11 +27,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -71,7 +66,7 @@
     # WLR_NO_HARDWARE_CURSORS = "1";
     # XCURSOR_SIZE = "48";
     # XCURSOR_THEME = "Adwaita";
-    
+
     # Force Electron apps (like VSCode) to use Wayland and proper scaling
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
@@ -80,42 +75,41 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   ly
-   neovim
-   zsh
-   alacritty
-   google-chrome
-   firefox
-   waybar
-   git
-   ripgrep
-   vscode
-   tmux
-   wl-clipboard
-   wtype
-   dotnet-sdk_10
-   jq          # JSON processor for scripts
-   rofi
-   hypridle    # Idle management for Hyprland
-   hyprlock    # Screen locker for Hyprland
-   hyprpaper   # Wallpaper manager for Hyprland
-   hyprcursor  # Cursor theme system for Hyprland
+   ly                    # Display Manager (Login Screen)
+   neovim                # Text Editor
+   zsh                   # Terminal Shell
+   alacritty             # Terminal emulator
+   google-chrome         # Browser
+   firefox               # Browser
+   waybar                # OS Toolbar
+   git                   # Code version control
+   ripgrep               # Search tool
+   vscode                # Code editor
+   tmux                  # Terminal multiplexe
+   wl-clipboard          # OS Clipboard
+   wtype                 # Wayland typing tool
+   jq                    # JSON processor for scripts
+   rofi                  # App launcher
+   hypridle              # Idle management for Hyprland
+   hyprlock              # Screen locker for Hyprland
+   hyprpaper             # Wallpaper manager for Hyprland
+   hyprcursor            # Cursor theme system for Hyprland
    rose-pine-hyprcursor  # Rose Pine cursor theme for hyprcursor
-   mako        # Notification daemon for Wayland
-   spotify
-   discord
-   playerctl   # Media player control for Spotify and other players
-   grim        # Screenshot tool for Wayland
-   slurp       # Select a region in Wayland compositors
-   swappy      # Wayland native snapshot editing tool
-   imv         # Lightweight image viewer for Wayland
-   mpv         # Lightweight video player for Wayland
-   nautilus    # GNOME Files file manager
-   carapace    # Multi-shell completion generator
-   zsh-completions  # Additional zsh completion definitions
-   blueman     # Bluetooth manager with system tray applet
-   pavucontrol # PulseAudio/PipeWire volume control GUI
-   mangohud    # Performance overlay for games
+   mako                  # Notification daemon for Wayland
+   spotify               # Music player
+   discord               # Chat tool
+   playerctl             # Media player control for Spotify and other players
+   grim                  # Screenshot tool for Wayland
+   slurp                 # Select a region in Wayland compositors
+   swappy                # Wayland native snapshot editing tool
+   imv                   # Lightweight image viewer for Wayland
+   mpv                   # Lightweight video player for Wayland
+   nautilus              # GNOME Files file manager
+   carapace              # Multi-shell completion generator
+   zsh-completions       # Additional zsh completion definitions
+   blueman               # Bluetooth manager with system tray applet
+   pavucontrol           # PulseAudio/PipeWire volume control GUI
+   mangohud              # Performance overlay for games
 
    # Flaxe packages
    (builtins.getFlake "github:sadjow/claude-code-nix").packages.${pkgs.system}.default
@@ -170,15 +164,6 @@
   systemd.tmpfiles.rules = [
     "d /home/matx/Pictures 0755 matx users -"
   ];
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
