@@ -5,7 +5,7 @@
   "spacing": 4,
 
   "modules-left": ["hyprland/workspaces"],
-  "modules-right": ["cpu", "custom/gpu", "memory", "disk", "pulseaudio", "clock"],
+  "modules-right": ["tray", "cpu", "temperature", "custom/gpu", "custom/gpu-temp", "memory", "disk", "pulseaudio", "clock"],
 
   "hyprland/workspaces": {
     "disable-scroll": true,
@@ -25,8 +25,22 @@
     "tooltip": false
   },
 
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C",
+    "interval": 2,
+    "tooltip": false
+  },
+
   "custom/gpu": {
     "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk '{print \"GPU \" $1\"%\"}'",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "custom/gpu-temp": {
+    "exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits | awk '{print $1\"°C\"}'",
     "interval": 2,
     "tooltip": false
   },
@@ -50,11 +64,17 @@
     "format-icons": {
       "default": ["🔈", "🔉", "🔊"]
     },
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    "on-click": "pavucontrol",
+    "on-click-right": "~/.local/bin/volume-control-all toggle"
   },
 
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "{:%Y-%m-%d %H:%M:%S}"
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
   }
 }

@@ -28,6 +28,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   # Set your time zone.
   time.timeZone = "America/Toronto";
 
@@ -102,6 +106,8 @@
    mpv         # Lightweight video player for Wayland
    nautilus    # GNOME Files file manager
    carapace    # Multi-shell completion generator
+   blueman     # Bluetooth manager with system tray applet
+   pavucontrol # PulseAudio/PipeWire volume control GUI
 
    # Flaxe packages
    (builtins.getFlake "github:sadjow/claude-code-nix").packages.${pkgs.system}.default
@@ -134,6 +140,9 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
+
+  # Enable blueman service for bluetooth management
+  services.blueman.enable = true;
 
   # Configure xdg-desktop-portal for Wayland
   xdg.portal = {
