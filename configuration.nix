@@ -49,7 +49,7 @@
     isNormalUser = true;
     description = "Mathieux Bergeron";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    shell = pkgs.nushell;
+    shell = pkgs.zsh;
     packages = with pkgs; [];
   };
 
@@ -75,10 +75,6 @@
    ly
    neovim
    zsh
-   oh-my-zsh
-   zsh-autosuggestions
-   zsh-syntax-highlighting
-   nushell
    alacritty
    google-chrome
    firefox
@@ -106,16 +102,22 @@
    mpv         # Lightweight video player for Wayland
    nautilus    # GNOME Files file manager
    carapace    # Multi-shell completion generator
+   zsh-completions  # Additional zsh completion definitions
    blueman     # Bluetooth manager with system tray applet
    pavucontrol # PulseAudio/PipeWire volume control GUI
+   mangohud    # Performance overlay for games
 
    # Flaxe packages
    (builtins.getFlake "github:sadjow/claude-code-nix").packages.${pkgs.system}.default
 
   ];
 
-  # Enable zsh
-  programs.zsh.enable = true;
+  # Enable zsh with plugins
+  programs.zsh = {
+    enable = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
