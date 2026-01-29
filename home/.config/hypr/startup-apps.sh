@@ -10,17 +10,17 @@ alacritty &
 sleep 2
 
 # Workspace 2: Chrome with work profile
-hyprctl dispatch workspace 2
+hyprctl dispatch workspace 3
 google-chrome-stable --profile-directory=Default &
 sleep 3
 
 # Workspace 3: Chrome with personal profile
-hyprctl dispatch workspace 3
+hyprctl dispatch workspace 4
 google-chrome-stable --profile-directory="Profile 1" --new-window &
 sleep 3
 
 # Workspace 4: Discord
-hyprctl dispatch workspace 4
+hyprctl dispatch workspace 2
 discord &
 sleep 3
 

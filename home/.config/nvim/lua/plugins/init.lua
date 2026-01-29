@@ -12,8 +12,21 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Plugin specifications
-local plugins = {
+-- Lazy.nvim options
+local opts = {
+  ui = {
+    border = "rounded",
+  },
+  change_detection = {
+    notify = false,
+  },
+}
+
+-- Setup lazy.nvim to load all plugins from lua/plugins/*.lua
+require("lazy").setup("plugins", opts)
+
+-- This file can also return plugin specs (loaded as part of the "plugins" import)
+return {
   -- Catppuccin colorscheme
   {
     "catppuccin/nvim",
@@ -82,16 +95,3 @@ local plugins = {
 
   -- Add your plugins here
 }
-
--- Lazy.nvim options
-local opts = {
-  ui = {
-    border = "rounded",
-  },
-  change_detection = {
-    notify = false,
-  },
-}
-
--- Setup lazy.nvim
-require("lazy").setup(plugins, opts)

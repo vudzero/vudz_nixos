@@ -110,6 +110,7 @@
    zsh-completions       # Additional zsh completion definitions
    blueman               # Bluetooth manager with system tray applet
    mangohud              # Performance overlay for games
+   nodejs                # JavaScript runtime (needed for Mason LSP servers)
 
    # Flaxe packages
    (builtins.getFlake "github:sadjow/claude-code-nix").packages.${pkgs.system}.default

@@ -10,48 +10,99 @@ window#waybar {
 }
 
 #workspaces button {
-  color: #ffffff;
-  background: rgba(255,0,0,0.1);
-  padding: 0 8px;
-  margin: 0 2px;
-  border-radius: 4px;
+  all: initial;
+  padding: 0 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
 }
 
-#workspaces button.focused,
-#workspaces button.active {
-  background: #64727D;
-  border-bottom: 2px solid #ffffff;
+#workspaces button.empty {
+  opacity: 0.5;
 }
 
 #cpu {
-  color: #ffffff;
-  padding: 0 10px;
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
 }
 
 #custom-gpu {
-  color: #ffffff;
-  padding: 0 10px;
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
 }
 
 #pulseaudio {
-  color: #ffffff;
-  padding: 0 10px;
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
 }
 
 #clock {
-  color: #ffffff;
-  padding: 0 10px;
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #ffffff;
 }
 
 #custom-hypridle {
-  padding: 0 10px;
-  font-size: 16px;
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
 #custom-hypridle.enabled {
-  color: #4CAF50;
+    color: #4CAF50;
 }
 
 #custom-hypridle.disabled {
-  color: #FF9800;
+    color: #FF9800;
+}
+
+#bluetooth {
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
+}
+
+#temperature {
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
+}
+
+#custom-gpu-temp {
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
+}
+
+#disk {
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
+}
+
+#memory {
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
 }
