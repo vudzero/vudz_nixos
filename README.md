@@ -43,7 +43,7 @@ Portable NixOS system configuration for Wayland-based environments with Sway/Hyp
 - **Editor**: VSCode, Neovim
 - **Shell**: Zsh with Oh My Zsh
 - **Development**: .NET SDK 10, Git, Tmux
-- **Tools**: Claude Code, Rofi, Waybar, wl-clipboard
+- **Tools**: Claude Code, Walker, Waybar, wl-clipboard
 
 ## See Also
 

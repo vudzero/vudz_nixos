@@ -63,10 +63,6 @@
   virtualisation.docker.enable = true;
 
   environment.variables = {
-    # WLR_NO_HARDWARE_CURSORS = "1";
-    # XCURSOR_SIZE = "48";
-    # XCURSOR_THEME = "Adwaita";
-
     # Force Electron apps (like VSCode) to use Wayland and proper scaling
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
@@ -89,7 +85,7 @@
    wl-clipboard          # OS Clipboard
    wtype                 # Wayland typing tool
    jq                    # JSON processor for scripts
-   rofi                  # App launcher
+   walker                # App launcher
    hypridle              # Idle management for Hyprland
    hyprlock              # Screen locker for Hyprland
    hyprpaper             # Wallpaper manager for Hyprland

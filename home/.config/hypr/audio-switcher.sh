@@ -11,12 +11,12 @@ if [ -z "$sinks" ]; then
     exit 1
 fi
 
-# Format for rofi: "ID. Device Name"
-# Prepare rofi list (already cleaned, just remove volume info)
-rofi_list=$(echo "$sinks" | sed 's/\[vol:.*\]$//' | sed 's/[[:space:]]*$//')
+# Format for walker: "ID. Device Name"
+# Prepare walker list (already cleaned, just remove volume info)
+walker_list=$(echo "$sinks" | sed 's/\[vol:.*\]$//' | sed 's/[[:space:]]*$//')
 
-# Show rofi menu
-selected=$(echo "$rofi_list" | rofi -dmenu -i -p "Select Audio Output" -theme-str 'window {width: 600px;}')
+# Show walker menu
+selected=$(echo "$walker_list" | walker --dmenu)
 
 # Exit if nothing selected
 if [ -z "$selected" ]; then
