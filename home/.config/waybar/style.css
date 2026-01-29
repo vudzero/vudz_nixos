@@ -42,3 +42,16 @@ window#waybar {
   color: #ffffff;
   padding: 0 10px;
 }
+
+#custom-hypridle {
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+#custom-hypridle.enabled {
+  color: #4CAF50;
+}
+
+#custom-hypridle.disabled {
+  color: #FF9800;
+}

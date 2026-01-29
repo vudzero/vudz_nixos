@@ -1,0 +1,30 @@
+[2026-01-28 20:07:23.233] [info] Using configuration file /home/matx/.config/waybar/config
+[2026-01-28 20:07:23.235] [info] Using CSS file /home/matx/.config/waybar/style.css
+[2026-01-28 20:07:23.238] [info] Hyprland IPC starting
+[2026-01-28 20:07:23.238] [info] Loading persistent workspaces from Waybar config
+[2026-01-28 20:07:23.238] [info] Loading persistent workspaces from Hyprland workspace rules
+[2026-01-28 20:07:23.358] [info] Bar configured (width: 2048, height: 30) for output: HDMI-A-1
+
+(waybar:201635): LIBDBUSMENU-GLIB-WARNING **: 20:07:27.589: Unable to replace properties on 0: Error getting properties for ID
+[2026-01-28 20:07:48.521] [info] Using configuration file /home/matx/.config/waybar/config
+[2026-01-28 20:07:48.522] [info] Using CSS file /home/matx/.config/waybar/style.css
+[2026-01-28 20:07:48.525] [info] Hyprland IPC starting
+[2026-01-28 20:07:48.526] [info] Loading persistent workspaces from Waybar config
+[2026-01-28 20:07:48.526] [info] Loading persistent workspaces from Hyprland workspace rules
+[2026-01-28 20:07:48.645] [info] Bar configured (width: 2048, height: 30) for output: HDMI-A-1
+Gdk-Message: 20:07:50.999: Unable to load hand2 from the cursor theme
+Gdk-Message: 20:07:52.046: Unable to load arrow from the cursor theme
+Gdk-Message: 20:07:53.246: Unable to load hand2 from the cursor theme
+Gdk-Message: 20:07:56.494: Unable to load arrow from the cursor theme
+
+(waybar:201986): LIBDBUSMENU-GLIB-WARNING **: 20:08:12.031: Unable to replace properties on 0: Error getting properties for ID
+
+(waybar:201986): LIBDBUSMENU-GLIB-WARNING **: 20:08:27.751: Unable to replace properties on 0: Error getting properties for ID
+
+(waybar:201986): LIBDBUSMENU-GLIB-WARNING **: 20:09:09.401: Unable to replace properties on 0: Error getting properties for ID
+
+(waybar:201986): LIBDBUSMENU-GLIB-WARNING **: 20:09:27.625: Unable to replace properties on 0: Error getting properties for ID
+
+(waybar:201986): LIBDBUSMENU-GLIB-WARNING **: 20:10:08.073: Unable to replace properties on 0: Error getting properties for ID
+
+(waybar:201986): LIBDBUSMENU-GLIB-WARNING **: 20:10:08.172: Unable to replace properties on 0: Error getting properties for ID
