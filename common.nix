@@ -1,16 +1,7 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
+# Common configuration shared across all machines
+{ config, pkgs, claude-code, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    #  ./nvidia.nix
-    ];
-
   # Enable flake
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -21,12 +12,10 @@
     options = "--delete-older-than +5";  # Keep 5 most recent generations
   };
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 5;  # Keep only last 5 generations in boot menu
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "nixos"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -35,10 +24,10 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
-  # Set your time zone.
+  # Set your time zone
   time.timeZone = "America/Toronto";
 
-  # Select internationalisation properties.
+  # Select internationalisation properties
   i18n.defaultLocale = "en_CA.UTF-8";
 
   # Configure keymap in X11
@@ -47,7 +36,7 @@
     variant = "";
   };
 
-  # Define a user account. Don't forget to set a password with 'passwd'.
+  # Define a user account
   users.users.matx = {
     isNormalUser = true;
     description = "Mathieux Bergeron";
@@ -68,8 +57,7 @@
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile
   environment.systemPackages = with pkgs; [
    ly                    # Display Manager (Login Screen)
    neovim                # Text Editor
@@ -105,12 +93,10 @@
    carapace              # Multi-shell completion generator
    zsh-completions       # Additional zsh completion definitions
    blueman               # Bluetooth manager with system tray applet
-   mangohud              # Performance overlay for games
    nodejs                # JavaScript runtime (needed for Mason LSP servers)
 
-   # Flaxe packages
-   (builtins.getFlake "github:sadjow/claude-code-nix").packages.${pkgs.system}.default
-
+   # Flake packages
+   claude-code.packages.${pkgs.system}.default
   ];
 
   # Enable zsh with plugins
@@ -120,28 +106,13 @@
     syntaxHighlighting.enable = true;
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
+  # Display manager and window manager
   services.xserver.enable = true;
   services.displayManager.ly.enable = true;
 
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-  };
-
-  # Enable Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
   };
 
   # Enable blueman service for bluetooth management
@@ -174,12 +145,6 @@
     "d /home/matx/Pictures 0755 matx users -"
   ];
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.11"; # Did you read the comment?
-
+  # State version
+  system.stateVersion = "25.11";
 }

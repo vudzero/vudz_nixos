@@ -1,0 +1,10 @@
+# Result symlinks from nix build
+result
+result-*
+
+# Backup files
+*.bak
+*~
+
+# Note: hardware-configuration.nix files ARE tracked in git
+# since they're organized by machine directory (machines/desktop/, machines/laptop/, etc.)
