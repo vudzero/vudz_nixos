@@ -4,6 +4,10 @@
 {
   networking.hostName = "laptop";
 
+  # Enable iwd for WiFi management (required by impala)
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
+
   # Laptop power management
   services.thermald.enable = true;
   powerManagement.enable = true;
@@ -24,5 +28,6 @@
   environment.systemPackages = with pkgs; [
     powertop  # Power consumption analyzer
     acpi      # Battery status tool
+    impala    # WiFi network manager
   ];
 }
