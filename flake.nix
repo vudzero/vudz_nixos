@@ -26,7 +26,7 @@
           ];
         };
 
-        # Laptop machine (no NVIDIA)
+        # Laptop machine
         laptop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit claude-code; };
