@@ -6,5 +6,7 @@ result-*
 *.bak
 *~
 
+kinova.ovpn
+
 # Note: hardware-configuration.nix files ARE tracked in git
 # since they're organized by machine directory (machines/desktop/, machines/laptop/, etc.)
