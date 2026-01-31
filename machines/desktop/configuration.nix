@@ -3,7 +3,7 @@
 
 {
   imports = [
-    ../../nvidia.nix  # Load NVIDIA configuration for desktop
+    ../../nvidia.nix # Load NVIDIA configuration for desktop
   ];
 
   networking.hostName = "desktop";
@@ -17,7 +17,6 @@
 
   # Desktop-specific packages (gaming, streaming, etc.)
   environment.systemPackages = with pkgs; [
-    mangohud    # Performance overlay for games
-    # obs-studio  # Streaming software (uncomment if needed)
+    mangohud # Performance overlay for games
   ];
 }

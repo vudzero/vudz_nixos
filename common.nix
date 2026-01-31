@@ -1,24 +1,35 @@
 # Common configuration shared across all machines
-{ config, pkgs, claude-code, ... }:
+{
+  config,
+  pkgs,
+  claude-code,
+  ...
+}:
 
 {
   # Enable flake
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Automatic garbage collection to keep only last 5 generations
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than +5";  # Keep 5 most recent generations
+    options = "--delete-older-than +5"; # Keep 5 most recent generations
   };
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 5;  # Keep only last 5 generations in boot menu
+  boot.loader.systemd-boot.configurationLimit = 5; # Keep only last 5 generations in boot menu
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager-openvpn
+  ];
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -40,9 +51,13 @@
   users.users.matx = {
     isNormalUser = true;
     description = "Mathieux Bergeron";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.zsh;
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -59,44 +74,46 @@
 
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
-   ly                    # Display Manager (Login Screen)
-   neovim                # Text Editor
-   zsh                   # Terminal Shell
-   alacritty             # Terminal emulator
-   google-chrome         # Browser
-   firefox               # Browser
-   waybar                # OS Toolbar
-   git                   # Code version control
-   ripgrep               # Search tool
-   vscode                # Code editor
-   tmux                  # Terminal multiplexe
-   wl-clipboard          # OS Clipboard
-   wtype                 # Wayland typing tool
-   jq                    # JSON processor for scripts
-   walker                # App launcher
-   hypridle              # Idle management for Hyprland
-   hyprlock              # Screen locker for Hyprland
-   hyprpaper             # Wallpaper manager for Hyprland
-   hyprcursor            # Cursor theme system for Hyprland
-   rose-pine-hyprcursor  # Rose Pine cursor theme for hyprcursor
-   mako                  # Notification daemon for Wayland
-   libnotify             # Send desktop notifications (provides notify-send)
-   spotify               # Music player
-   discord               # Chat tool
-   playerctl             # Media player control for Spotify and other players
-   grim                  # Screenshot tool for Wayland
-   slurp                 # Select a region in Wayland compositors
-   swappy                # Wayland native snapshot editing tool
-   imv                   # Lightweight image viewer for Wayland
-   mpv                   # Lightweight video player for Wayland
-   nautilus              # GNOME Files file manager
-   carapace              # Multi-shell completion generator
-   zsh-completions       # Additional zsh completion definitions
-   blueman               # Bluetooth manager with system tray applet
-   nodejs                # JavaScript runtime (needed for Mason LSP servers)
+    ly # Display Manager (Login Screen)
+    neovim # Text Editor
+    zsh # Terminal Shell
+    alacritty # Terminal emulator
+    google-chrome # Browser
+    firefox # Browser
+    waybar # OS Toolbar
+    git # Code version control
+    ripgrep # Search tool
+    vscode # Code editor
+    tmux # Terminal multiplexe
+    wl-clipboard # OS Clipboard
+    wtype # Wayland typing tool
+    jq # JSON processor for scripts
+    walker # App launcher
+    hypridle # Idle management for Hyprland
+    hyprlock # Screen locker for Hyprland
+    hyprpaper # Wallpaper manager for Hyprland
+    hyprcursor # Cursor theme system for Hyprland
+    rose-pine-hyprcursor # Rose Pine cursor theme for hyprcursor
+    mako # Notification daemon for Wayland
+    libnotify # Send desktop notifications (provides notify-send)
+    spotify # Music player
+    discord # Chat tool
+    playerctl # Media player control for Spotify and other players
+    grim # Screenshot tool for Wayland
+    slurp # Select a region in Wayland compositors
+    swappy # Wayland native snapshot editing tool
+    imv # Lightweight image viewer for Wayland
+    mpv # Lightweight video player for Wayland
+    nautilus # GNOME Files file manager
+    carapace # Multi-shell completion generator
+    zsh-completions # Additional zsh completion definitions
+    blueman # Bluetooth manager with system tray applet
+    nodejs # JavaScript runtime (needed for Mason LSP servers)
+    openvpn # OpenVPN client for office VPN
+    nixfmt # Nix File formatter
 
-   # Flake packages
-   claude-code.packages.${pkgs.system}.default
+    # Flake packages
+    claude-code.packages.${pkgs.system}.default
   ];
 
   # Enable zsh with plugins
@@ -122,12 +139,12 @@
   services.pipewire = {
     enable = true;
     audio.enable = true;
-    pulse.enable = true;  # PulseAudio compatibility
+    pulse.enable = true; # PulseAudio compatibility
     alsa = {
       enable = true;
-      support32Bit = true;  # For Steam games
+      support32Bit = true; # For Steam games
     };
-    wireplumber.enable = true;  # Session manager
+    wireplumber.enable = true; # Session manager
   };
 
   # Configure xdg-desktop-portal for Wayland

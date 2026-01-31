@@ -26,8 +26,8 @@
 
   # Laptop-specific packages
   environment.systemPackages = with pkgs; [
-    powertop  # Power consumption analyzer
-    acpi      # Battery status tool
-    impala    # WiFi network manager
+    powertop # Power consumption analyzer
+    acpi # Battery status tool
+    impala # WiFi network manager
   ];
 }
