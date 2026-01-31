@@ -28,4 +28,12 @@ shopt -u dotglob
 
 echo ""
 echo "Configuration files deployed successfully!"
-echo "You may need to reload your window manager or applications to see the changes."
+
+# Smart reload Hyprland if running
+if pgrep -x "Hyprland" > /dev/null; then
+    echo "Reloading Hyprland configuration (preserving monitor setup)..."
+    ~/.config/hypr/smart-reload.sh
+    echo "Hyprland reloaded!"
+else
+    echo "Hyprland is not running. Changes will take effect on next launch."
+fi

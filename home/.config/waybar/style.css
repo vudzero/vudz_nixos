@@ -1,6 +1,6 @@
 * {
   border: none;
-  font-family: monospace;
+  font-family: "JetBrainsMono Nerd Font";
   font-size: 14px;
 }
 
@@ -17,7 +17,7 @@ window#waybar {
 }
 
 #workspaces button.empty {
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 #cpu {
@@ -67,6 +67,14 @@ window#waybar {
     color: #FF9800;
 }
 
+#network {
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
+}
+
 #bluetooth {
     margin: 4px 0 6px 0;
     padding: 0 10px;
@@ -105,4 +113,11 @@ window#waybar {
     color: #000000;
     background-color: #ddddff;
     border-radius: 4px;
+}
+
+#custom-power {
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #ffffff;
+    font-size: 16px;
 }

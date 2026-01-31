@@ -1,19 +1,26 @@
 #!/usr/bin/env bash
 
-# Get all audio sinks (output devices) with their IDs and descriptions
-sinks=$(wpctl status | awk '/Sinks:/,/Sources:/' | grep -E '[0-9]+\.' | sed 's/.*│//' | sed 's/^[[:space:]]*\**//' | sed 's/^[[:space:]]*//' | grep -E '^[0-9]+\.')
+# Get all audio sinks with their status (keep asterisk to identify current device)
+sinks_raw=$(wpctl status | awk '/Sinks:/,/Sources:/' | grep -E '[0-9]+\.' | sed 's/.*│//' | sed 's/^[[:space:]]*//' | grep -E '^(\*\s+)?[0-9]+\.')
 
 # Check if we found any sinks
-if [ -z "$sinks" ]; then
+if [ -z "$sinks_raw" ]; then
     if command -v notify-send &> /dev/null; then
         notify-send "Audio Switcher" "No audio devices found"
     fi
     exit 1
 fi
 
-# Format for walker: "ID. Device Name"
-# Prepare walker list (already cleaned, just remove volume info)
-walker_list=$(echo "$sinks" | sed 's/\[vol:.*\]$//' | sed 's/[[:space:]]*$//')
+# Identify current device (marked with *) and others
+current_sink=$(echo "$sinks_raw" | grep '^\*' | sed 's/^\*\s*//' | sed 's/\[vol:.*\]$//' | sed 's/[[:space:]]*$//')
+other_sinks=$(echo "$sinks_raw" | grep -v '^\*' | sed 's/\[vol:.*\]$//' | sed 's/[[:space:]]*$//')
+
+# Build walker list with current device at top (marked with ►)
+if [ -n "$current_sink" ]; then
+    walker_list=$(echo -e "► $current_sink\n$other_sinks")
+else
+    walker_list=$(echo "$other_sinks")
+fi
 
 # Show walker menu
 selected=$(echo "$walker_list" | walker --dmenu)
@@ -23,8 +30,8 @@ if [ -z "$selected" ]; then
     exit 0
 fi
 
-# Extract the sink ID from the selected line (first number before the dot)
-sink_id=$(echo "$selected" | grep -oE '^[0-9]+' | head -1)
+# Extract the sink ID from the selected line (first number before the dot, strip ► marker)
+sink_id=$(echo "$selected" | sed 's/^► //' | grep -oE '^[0-9]+' | head -1)
 
 # Set as default sink
 wpctl set-default "$sink_id"
@@ -32,8 +39,8 @@ wpctl set-default "$sink_id"
 # Set volume to 24%
 wpctl set-volume "$sink_id" 24%
 
-# Get device name for notification (remove ID number and dot)
-device_name=$(echo "$selected" | sed 's/^[0-9]*\.\s*//' | sed 's/[[:space:]]*$//')
+# Get device name for notification (remove ► marker, ID number and dot)
+device_name=$(echo "$selected" | sed 's/^► //' | sed 's/^[0-9]*\.\s*//' | sed 's/[[:space:]]*$//')
 
 # Send notification (if notify-send is available)
 if command -v notify-send &> /dev/null; then

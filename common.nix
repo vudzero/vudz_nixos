@@ -31,6 +31,14 @@
     networkmanager-openvpn
   ];
 
+  # Block Spotify self-update domains
+  networking.hosts = {
+    "0.0.0.0" = [
+      "upgrade.scdn.co"
+      "upgrade.spotify.com"
+    ];
+  };
+
   # Enable bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
@@ -62,6 +70,11 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Font configuration
+  fonts.packages = with pkgs; [
+    (nerd-fonts.jetbrains-mono)
+  ];
 
   # Enable Docker
   virtualisation.docker.enable = true;
@@ -107,10 +120,11 @@
     nautilus # GNOME Files file manager
     carapace # Multi-shell completion generator
     zsh-completions # Additional zsh completion definitions
-    blueman # Bluetooth manager with system tray applet
+    bluetuith # TUI-based bluetooth connection manager
     nodejs # JavaScript runtime (needed for Mason LSP servers)
     openvpn # OpenVPN client for office VPN
     nixfmt # Nix File formatter
+    wlogout # Wayland logout/power menu
 
     # Flake packages
     claude-code.packages.${pkgs.system}.default
@@ -131,9 +145,6 @@
     enable = true;
     xwayland.enable = true;
   };
-
-  # Enable blueman service for bluetooth management
-  services.blueman.enable = true;
 
   # Enable PipeWire audio service
   services.pipewire = {
