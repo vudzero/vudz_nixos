@@ -25,3 +25,15 @@ style = "Italic"
 [font.bold_italic]
 family = "JetBrainsMono Nerd Font"
 style = "Bold Italic"
+
+# Key bindings for copy/paste using CTRL instead of SHIFT+CTRL
+# CTRL+C copies when text is selected, otherwise sends interrupt signal
+[[keyboard.bindings]]
+key = "C"
+mods = "Control"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control"
+action = "Paste"
