@@ -43,6 +43,8 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     # Might help with some rendering issues
     LIBVA_DRIVER_NAME = "nvidia";
+    # Ensure Vulkan can find NVIDIA driver
+    VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
   };
 
   systemd.services.nvidia-suspend.enable = true;

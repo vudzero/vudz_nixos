@@ -1,19 +1,26 @@
-# Laptop-specific configuration
-{ config, pkgs, lib, ... }:
+# configuration
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   networking.hostName = "laptop";
 
   # Enable PREEMPT_RT for realtime performance
-  boot.kernelPackages = pkgs.linuxPackages_6_12.extend (self: super: {
-    kernel = super.kernel.override {
-      structuredExtraConfig = with lib.kernel; {
-        PREEMPT_RT = yes;
-        PREEMPT_VOLUNTARY = lib.mkForce no;
+  boot.kernelPackages = pkgs.linuxPackages_6_12.extend (
+    self: super: {
+      kernel = super.kernel.override {
+        structuredExtraConfig = with lib.kernel; {
+          PREEMPT_RT = yes;
+          PREEMPT_VOLUNTARY = lib.mkForce no;
+        };
+        ignoreConfigErrors = true;
       };
-      ignoreConfigErrors = true;
-    };
-  });
+    }
+  );
 
   # Enable iwd for WiFi management (required by impala)
   networking.wireless.iwd.enable = true;

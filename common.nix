@@ -81,6 +81,9 @@
   # Enable Docker
   virtualisation.docker.enable = true;
 
+  # Enable Flatpak
+  services.flatpak.enable = true;
+
   # Enable libvirt for QEMU/KVM virtualization
   virtualisation.libvirtd = {
     enable = true;
@@ -113,7 +116,7 @@
     waybar # OS Toolbar
     git # Code version control
     ripgrep # Search tool
-    vscode # Code editor
+    vscode-fhs # Code editor with FHS environment for extensions
     tmux # Terminal multiplexe
     wl-clipboard # OS Clipboard
     wtype # Wayland typing tool
@@ -139,6 +142,8 @@
     zsh-completions # Additional zsh completion definitions
     bluetuith # TUI-based bluetooth connection manager
     nodejs # JavaScript runtime (needed for Mason LSP servers)
+    dotnet-sdk_10 # .NET 10 SDK
+    tailwindcss_4 # Tailwindcss V4 Cli
     openvpn # OpenVPN client for office VPN
     nixfmt # Nix File formatter
     wlogout # Wayland logout/power menu
