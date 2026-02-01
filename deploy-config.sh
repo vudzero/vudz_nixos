@@ -19,7 +19,7 @@ for item in "$SOURCE_HOME"/*; do
     if [ -e "$item" ]; then
         basename_item=$(basename "$item")
         echo "Copying $basename_item..."
-        cp -r "$item" "$TARGET_HOME/"
+        cp -rp "$item" "$TARGET_HOME/"
     fi
 done
 
@@ -30,10 +30,7 @@ echo ""
 echo "Configuration files deployed successfully!"
 
 # Smart reload Hyprland if running
-if pgrep -x "Hyprland" > /dev/null; then
-    echo "Reloading Hyprland configuration (preserving monitor setup)..."
-    ~/.config/hypr/smart-reload.sh
-    echo "Hyprland reloaded!"
-else
-    echo "Hyprland is not running. Changes will take effect on next launch."
-fi
+echo ""
+echo "Reloading Hyprland configuration (preserving monitor setup)..."
+~/.config/hypr/smart-reload.sh
+echo "Hyprland reloaded!"

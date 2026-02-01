@@ -63,6 +63,8 @@
       "networkmanager"
       "wheel"
       "docker"
+      "libvirtd"
+      "vmware"
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [ ];
@@ -78,6 +80,21 @@
 
   # Enable Docker
   virtualisation.docker.enable = true;
+
+  # Enable libvirt for QEMU/KVM virtualization
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      swtpm.enable = true; # TPM emulation for Windows 11
+    };
+  };
+
+  # Enable VMware Workstation
+  virtualisation.vmware.host = {
+    enable = true;
+    package = pkgs.vmware-workstation;
+  };
 
   environment.variables = {
     # Force Electron apps (like VSCode) to use Wayland and proper scaling
@@ -125,6 +142,11 @@
     openvpn # OpenVPN client for office VPN
     nixfmt # Nix File formatter
     wlogout # Wayland logout/power menu
+
+    # Virtualization
+    virt-manager # GUI for managing VMs
+    virt-viewer # Viewer for VM displays
+    spice-gtk # SPICE client for VM access
 
     # Flake packages
     claude-code.packages.${pkgs.system}.default

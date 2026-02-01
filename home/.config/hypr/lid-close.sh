@@ -6,5 +6,5 @@ hyprctl keyword monitor "eDP-1, disable"
 
 # Move all workspaces to external monitor (DP-2)
 for i in {1..9}; do
-    hyprctl keyword workspace "$i, monitor:DP-2"
+    hyprctl dispatch moveworkspacetomonitor $i DP-2
 done
