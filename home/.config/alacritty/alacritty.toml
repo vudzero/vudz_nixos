@@ -30,10 +30,10 @@ style = "Bold Italic"
 # CTRL+C copies when text is selected, otherwise sends interrupt signal
 [[keyboard.bindings]]
 key = "C"
-mods = "Control"
+mods = "Super"
 action = "Copy"
 
 [[keyboard.bindings]]
 key = "V"
-mods = "Control"
+mods = "Super"
 action = "Paste"

@@ -147,11 +147,7 @@
     openvpn # OpenVPN client for office VPN
     nixfmt # Nix File formatter
     wlogout # Wayland logout/power menu
-
-    # Virtualization
-    virt-manager # GUI for managing VMs
-    virt-viewer # Viewer for VM displays
-    spice-gtk # SPICE client for VM access
+    btop # TUI system monitor for CPU/RAM/disk/network
 
     # Flake packages
     claude-code.packages.${pkgs.system}.default

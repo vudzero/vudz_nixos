@@ -1,0 +1,3 @@
+-Fix status bar style
+-When wifi is not enable on a machine, don't show wifi status
+

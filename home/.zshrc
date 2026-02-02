@@ -43,3 +43,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # Menu-style completion
 zstyle ':completion:*' menu select
+
+# Autosuggestions keybindings
+bindkey '^I' autosuggest-accept  # TAB accepts autosuggestion
+bindkey '^[[Z' expand-or-complete  # SHIFT+TAB for menu completion
