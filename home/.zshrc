@@ -45,5 +45,15 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' menu select
 
 # Autosuggestions keybindings
-bindkey '^I' autosuggest-accept  # TAB accepts autosuggestion
-bindkey '^[[Z' expand-or-complete  # SHIFT+TAB for menu completion
+bindkey '^I' expand-or-complete  # TAB for menu completion
+bindkey '^[[Z' autosuggest-accept  # SHIFT+TAB accepts autosuggestion
+
+# Key bindings for word and line navigation
+bindkey '\e[1;3D' backward-word      # Alt+Left - move backward one word
+bindkey '\e[1;3C' forward-word       # Alt+Right - move forward one word
+bindkey '\e[1;5D' beginning-of-line  # Ctrl+Left - move to beginning of line
+bindkey '\e[1;5C' end-of-line        # Ctrl+Right - move to end of line
+
+# Key bindings for deletion
+bindkey '\e[3;3~' kill-word           # Alt+Delete - delete word forward
+bindkey '^H' backward-kill-line       # Ctrl+Delete - delete from cursor to beginning of line

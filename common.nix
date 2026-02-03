@@ -2,7 +2,6 @@
 {
   config,
   pkgs,
-  claude-code,
   ...
 }:
 
@@ -13,7 +12,7 @@
     "flakes"
   ];
 
-  # Automatic garbage collection to keep only last 5 generations
+  # Automatic garbage collection to keep only last 5 generationsopencode-flake.packages.${pkgs.system}.default
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -148,9 +147,10 @@
     nixfmt # Nix File formatter
     wlogout # Wayland logout/power menu
     btop # TUI system monitor for CPU/RAM/disk/network
+    unzip # File compression utility
+    opencode # OpenCode AI Assistant
+    claude-code # Claude Code AI Assistant
 
-    # Flake packages
-    claude-code.packages.${pkgs.system}.default
   ];
 
   # Enable zsh with plugins
