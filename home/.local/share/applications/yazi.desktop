@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Yazi
+Comment=Blazing fast terminal file manager
+Exec=alacritty --class yazi -e yazi
+Icon=yazi
+Terminal=false
+Categories=System;FileManager;
+Keywords=file;manager;explorer;browser;

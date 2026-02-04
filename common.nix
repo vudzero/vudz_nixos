@@ -114,6 +114,7 @@
     firefox # Browser
     waybar # OS Toolbar
     git # Code version control
+    lazygit # TUI for git operations
     ripgrep # Search tool
     vscode-fhs # Code editor with FHS environment for extensions
     tmux # Terminal multiplexe
@@ -136,7 +137,7 @@
     swappy # Wayland native snapshot editing tool
     imv # Lightweight image viewer for Wayland
     mpv # Lightweight video player for Wayland
-    nautilus # GNOME Files file manager
+    yazi # Terminal file manager
     carapace # Multi-shell completion generator
     zsh-completions # Additional zsh completion definitions
     bluetuith # TUI-based bluetooth connection manager
@@ -147,6 +148,7 @@
     nixfmt # Nix File formatter
     wlogout # Wayland logout/power menu
     btop # TUI system monitor for CPU/RAM/disk/network
+    ncdu # TUI disk usage analyzer
     unzip # File compression utility
     opencode # OpenCode AI Assistant
     claude-code # Claude Code AI Assistant
