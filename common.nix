@@ -123,7 +123,7 @@
     jq # JSON processor for scripts
     walker # App launcher
     hypridle # Idle management for Hyprland
-    hyprlock # Screen locker for Hyprland
+    swaylock-effects # Screen locker for Wayland with clock and effects
     hyprpaper # Wallpaper manager for Hyprland
     hyprcursor # Cursor theme system for Hyprland
     rose-pine-hyprcursor # Rose Pine cursor theme for hyprcursor

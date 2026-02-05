@@ -1,11 +1,14 @@
 # Alacritty configuration
 
 [window]
-opacity = 0.95
+opacity = 1.00
 
 [window.padding]
 x = 10
 y = 10
+
+[colors.primary]
+background = "#1e1e2e"
 
 [font]
 size = 12.0
