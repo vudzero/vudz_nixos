@@ -152,7 +152,7 @@
     unzip # File compression utility
     opencode # OpenCode AI Assistant
     claude-code # Claude Code AI Assistant
-
+    python314 # Python3 runtime
   ];
 
   # Enable zsh with plugins
