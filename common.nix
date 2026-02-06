@@ -121,7 +121,7 @@
     wl-clipboard # OS Clipboard
     wtype # Wayland typing tool
     jq # JSON processor for scripts
-    walker # App launcher
+    rofi # App launcher
     hypridle # Idle management for Hyprland
     swaylock-effects # Screen locker for Wayland with clock and effects
     hyprpaper # Wallpaper manager for Hyprland

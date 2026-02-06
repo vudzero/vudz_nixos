@@ -38,9 +38,9 @@ if [ -z "$bindings" ]; then
     exit 0
 fi
 
-if ! command -v walker &> /dev/null; then
+if ! command -v rofi &> /dev/null; then
     if command -v notify-send &> /dev/null; then
-        notify-send "Hyprland Bindings" "walker not found on PATH"
+        notify-send "Hyprland Bindings" "rofi not found on PATH"
     fi
     exit 1
 fi
@@ -49,13 +49,13 @@ monitor_height=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .
 menu_height=$((monitor_height * 20 / 100))
 
 err_file=$(mktemp)
-if ! selected=$(printf '%s\n' "$bindings" | walker --dmenu -p 'Keybindings' --width 800 --height "$menu_height" 2>"$err_file"); then
+if ! selected=$(printf '%s\n' "$bindings" | rofi -dmenu -p 'Keybindings' 2>"$err_file"); then
     if command -v notify-send &> /dev/null; then
         err_msg=$(head -n 1 "$err_file")
         if [ -n "$err_msg" ]; then
-            notify-send "Hyprland Bindings" "walker error: $err_msg"
+            notify-send "Hyprland Bindings" "rofi error: $err_msg"
         else
-            notify-send "Hyprland Bindings" "walker exited without output"
+            notify-send "Hyprland Bindings" "rofi exited without output"
         fi
     fi
     rm -f "$err_file"

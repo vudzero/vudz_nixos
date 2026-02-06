@@ -23,7 +23,7 @@ else
 fi
 
 # Show walker menu
-selected=$(echo "$walker_list" | walker --dmenu)
+selected=$(echo "$walker_list" | rofi -dmenu -p 'Audio Device')
 
 # Exit if nothing selected
 if [ -z "$selected" ]; then

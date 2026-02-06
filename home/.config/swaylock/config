@@ -1,7 +1,7 @@
 # Swaylock Configuration
 
 # Background
-color=eff1f5
+color=1e1e2e
 
 # Font
 font=JetBrainsMono Nerd Font
@@ -58,7 +58,7 @@ indicator-thickness=20
 ignore-empty-password
 daemonize
 
-color=eff1f5
+color=1e1e2e
 bs-hl-color=dc8a78
 caps-lock-bs-hl-color=dc8a78
 caps-lock-key-hl-color=40a02b
@@ -67,7 +67,7 @@ inside-clear-color=00000000
 inside-caps-lock-color=00000000
 inside-ver-color=00000000
 inside-wrong-color=00000000
-key-hl-color=40a02b
+key-hl-color=a6bcfe
 layout-bg-color=00000000
 layout-border-color=00000000
 layout-text-color=4c4f69
@@ -77,7 +77,7 @@ line-caps-lock-color=00000000
 line-ver-color=00000000
 line-wrong-color=00000000
 ring-color=7287fd
-ring-clear-color=dc8a78
+ring-clear-color=ffffff
 ring-caps-lock-color=fe640b
 ring-ver-color=1e66f5
 ring-wrong-color=e64553
