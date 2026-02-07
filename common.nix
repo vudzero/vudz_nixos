@@ -153,6 +153,7 @@
     opencode # OpenCode AI Assistant
     claude-code # Claude Code AI Assistant
     python314 # Python3 runtime
+    sound-theme-freedesktop # Freedesktop sound theme for system sounds
   ];
 
   # Enable zsh with plugins

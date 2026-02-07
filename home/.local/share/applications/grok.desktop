@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Grok
+Comment=Grok AI web application
+Exec=google-chrome --app=https://grok.com --profile-directory="Profile 1"
+Icon=/home/matx/.local/share/icons/grok.png
+Terminal=false
+Categories=Network;WebBrowser;
+Keywords=ai;grok;chat;

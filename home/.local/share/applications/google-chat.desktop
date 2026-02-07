@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Google Chat
+Comment=Google Chat web application
+Exec=google-chrome --app=https://chat.google.com --profile-directory="Default"
+Icon=google-chrome
+Terminal=false
+Categories=Network;InstantMessaging;
+Keywords=chat;messaging;google;

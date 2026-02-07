@@ -166,6 +166,13 @@ else
     ((FAILURE_COUNT++))
 fi
 
+# Workspace 2: Google Chat web app
+if launch_app_and_move 2 "google-chrome --app=https://chat.google.com --profile-directory=\"Default\"" "Google Chat" "chrome-chat.google.com__-Default"; then
+    ((SUCCESS_COUNT++))
+else
+    ((FAILURE_COUNT++))
+fi
+
 # Workspace 9: Spotify
 if launch_app_and_move 9 "spotify" "Spotify" "spotify"; then
     ((SUCCESS_COUNT++))
