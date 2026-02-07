@@ -1,89 +1,45 @@
-# Swaylock Configuration
+# Vanilla Swaylock Configuration
+# Compatible with plain swaylock (not swaylock-effects)
 
-# Background
+# Solid background color
 color=1e1e2e
 
-# Font
-font=JetBrainsMono Nerd Font
-font-size=128
+# Show helpful information
+show-failed-attempts
+indicator-caps-lock
 
-# Clock
-clock
-timestr=%H:%M:%S
+# Make indicator always visible (even when idle)
+indicator-idle-visible
 
-# Indicator appearance
-indicator
-indicator-radius=180
-indicator-thickness=20
-
-# Show failed login attempts
-#show-failed-attempts
-#show-keyboard-layout
-
-# Indicator states - using Rose Pine inspired colors
-# Default state
-#inside-color=191724
-#ring-color=31748f
-#line-color=1f1d2e
-#text-color=e0def4
-
-# When typing
-#inside-clear-color=1f1d2e
-#ring-clear-color=9ccfd8
-#line-clear-color=1f1d2e
-#text-clear-color=e0def4
-
-# When verifying password
-#inside-ver-color=1f1d2e
-#ring-ver-color=c4a7e7
-#line-ver-color=1f1d2e
-#text-ver-color=e0def4
-
-# When password is wrong
-#inside-wrong-color=1f1d2e
-#ring-wrong-color=eb6f92
-#line-wrong-color=1f1d2e
-#text-wrong-color=eb6f92
-
-# Caps lock state
-#inside-caps-lock-color=1f1d2e
-#ring-caps-lock-color=f6c177
-#line-caps-lock-color=1f1d2e
-#text-caps-lock-color=e0def4
-
-# Separator color
-#separator-color=1f1d2e
-
-# Other settings
+# Basic settings
 ignore-empty-password
 daemonize
 
-color=1e1e2e
-bs-hl-color=dc8a78
-caps-lock-bs-hl-color=dc8a78
-caps-lock-key-hl-color=40a02b
-inside-color=00000000
-inside-clear-color=00000000
-inside-caps-lock-color=00000000
-inside-ver-color=00000000
-inside-wrong-color=00000000
-key-hl-color=a6bcfe
-layout-bg-color=00000000
-layout-border-color=00000000
-layout-text-color=4c4f69
-line-color=00000000
-line-clear-color=00000000
-line-caps-lock-color=00000000
-line-ver-color=00000000
-line-wrong-color=00000000
-ring-color=7287fd
-ring-clear-color=ffffff
-ring-caps-lock-color=fe640b
-ring-ver-color=1e66f5
-ring-wrong-color=e64553
-separator-color=00000000
-text-color=4c4f69
-text-clear-color=dc8a78
-text-caps-lock-color=fe640b
-text-ver-color=1e66f5
-text-wrong-color=e64553
+# Font settings
+font=JetBrainsMono Nerd Font
+font-size=24
+
+# Larger, more visible indicator
+indicator-radius=120
+indicator-thickness=15
+
+# Blue color scheme
+# Default state
+inside-color=1a1f3a
+ring-color=4169e1
+text-color=a8c5e0
+
+# Verifying password
+inside-ver-color=1a1f3a
+ring-ver-color=1e90ff
+text-ver-color=87ceeb
+
+# Wrong password
+inside-wrong-color=1a1f3a
+ring-wrong-color=000080
+text-wrong-color=4682b4
+
+# Typing/cleared
+inside-clear-color=1a1f3a
+ring-clear-color=6495ed
+text-clear-color=b0d4f1
