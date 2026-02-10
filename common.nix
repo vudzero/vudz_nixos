@@ -176,6 +176,15 @@
   # Enable OpenVPN 3
   programs.openvpn3.enable = true;
 
+  # Git configuration
+  programs.git = {
+    enable = true;
+    config = {
+      user.name = "Mathieux Bergeron";
+      user.email = "mbergeron@kinova.ca";
+    };
+  };
+
   # Display manager and window manager
   services.xserver.enable = true;
   services.displayManager.ly.enable = true;
