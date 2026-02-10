@@ -50,6 +50,14 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Enable AMD GPU support with Mesa drivers
+  boot.kernelModules = [ "amdgpu" ];
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true; # For Steam and 32-bit apps
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
