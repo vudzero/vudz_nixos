@@ -113,7 +113,6 @@
 
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
-    ly # Display Manager (Login Screen)
     neovim # Text Editor
     zsh # Terminal Shell
     alacritty # Terminal emulator
@@ -188,7 +187,7 @@
 
   # Display manager and window manager
   services.xserver.enable = true;
-  services.displayManager.ly.enable = true;
+  services.displayManager.gdm.enable = true;
 
   programs.hyprland = {
     enable = true;
