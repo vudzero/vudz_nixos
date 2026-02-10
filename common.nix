@@ -24,11 +24,15 @@
   boot.loader.systemd-boot.configurationLimit = 5; # Keep only last 5 generations in boot menu
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Enable zram for memory compression
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd"; # Fast compression algorithm
+    memoryPercent = 50; # Use 50% of RAM for zram (8GB → ~16-24GB compressed)
+  };
+
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.networkmanager.plugins = with pkgs; [
-    networkmanager-openvpn
-  ];
 
   # Block Spotify self-update domains
   networking.hosts = {
@@ -142,6 +146,7 @@
     zsh-completions # Additional zsh completion definitions
     bluetuith # TUI-based bluetooth connection manager
     nodejs # JavaScript runtime (needed for Mason LSP servers)
+    clang-tools # C/C++ language server (includes clangd)
     dotnet-sdk_10 # .NET 10 SDK
     tailwindcss_4 # Tailwindcss V4 Cli
     openvpn # OpenVPN client for office VPN
@@ -154,6 +159,8 @@
     claude-code # Claude Code AI Assistant
     python314 # Python3 runtime
     sound-theme-freedesktop # Freedesktop sound theme for system sounds
+    wiremix # Audio mixer for PipeWire
+    openvpn3 # Open VPN 3 Client
   ];
 
   # Enable zsh with plugins

@@ -41,6 +41,15 @@ return {
           end,
         },
       })
+
+      -- Set up system-installed clangd using new vim.lsp.config API (Neovim 0.11+)
+      vim.lsp.config.clangd = {
+        cmd = { "clangd" },
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+        root_markers = { ".clangd", ".clang-tidy", ".clang-format", "compile_commands.json", "compile_flags.txt", ".git" },
+        capabilities = capabilities,
+      }
+      vim.lsp.enable("clangd")
     end,
   },
 
