@@ -34,6 +34,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable systemd-resolved for DNS management (required by openvpn3)
+  services.resolved.enable = true;
+
   # Block Spotify self-update domains
   networking.hosts = {
     "0.0.0.0" = [
@@ -169,6 +172,9 @@
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
   };
+
+  # Enable OpenVPN 3
+  programs.openvpn3.enable = true;
 
   # Display manager and window manager
   services.xserver.enable = true;

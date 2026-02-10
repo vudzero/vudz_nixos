@@ -23,6 +23,16 @@
           ];
         };
 
+	# Framework desktop machine
+        framework = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./machines/framework/hardware-configuration.nix
+            ./machines/framework/configuration.nix
+            ./common.nix
+          ];
+        };
+
         # Laptop machine
         laptop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -32,6 +42,7 @@
             ./common.nix
           ];
         };
+
       };
     };
 }

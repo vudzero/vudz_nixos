@@ -9,7 +9,7 @@ if [ -z "$MACHINE" ]; then
     # Auto-detect based on hostname
     CURRENT_HOSTNAME=$(hostname)
 
-    if [ "$CURRENT_HOSTNAME" = "desktop" ] || [ "$CURRENT_HOSTNAME" = "laptop" ]; then
+    if [ "$CURRENT_HOSTNAME" = "desktop" ] || [ "$CURRENT_HOSTNAME" = "laptop" ] || [ "$CURRENT_HOSTNAME" = "framework" ]; then
         MACHINE="$CURRENT_HOSTNAME"
         echo "Auto-detected machine: $MACHINE"
     else
@@ -17,9 +17,10 @@ if [ -z "$MACHINE" ]; then
         echo ""
         echo "Available machines:"
         echo "  - desktop (with NVIDIA)"
+        echo "  - framework"
         echo "  - laptop (with power management)"
         echo ""
-        echo "Or set your hostname to 'desktop' or 'laptop' for auto-detection."
+        echo "Or set your hostname to 'desktop', 'laptop', or 'framework' for auto-detection."
         exit 1
     fi
 fi
