@@ -164,6 +164,7 @@
     sound-theme-freedesktop # Freedesktop sound theme for system sounds
     wiremix # Audio mixer for PipeWire
     openvpn3 # Open VPN 3 Client
+    rtorrent # BitTorrent client
   ];
 
   # Enable zsh with plugins
