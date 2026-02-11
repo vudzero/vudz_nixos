@@ -10,6 +10,12 @@
     dedicatedServer.openFirewall = true;
   };
 
+  # Enable GameMode for gaming performance
+  programs.gamemode = {
+    enable = true;
+    enableRenice = true;
+  };
+
   # Gaming packages
   environment.systemPackages = with pkgs; [
     mangohud # Performance overlay for games
@@ -19,6 +25,7 @@
         mupen64plus # Nintendo 64 core for retroarch
         pcsx_rearmed # PlayStation 1 core for retroarch
         beetle-psx-hw # Beetle PSX HW - Hardware-accelerated PS1 core
+        swanstation # PlayStation 1 core (DuckStation fork)
       ]
     ))
   ];

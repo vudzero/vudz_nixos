@@ -164,6 +164,7 @@
     wiremix # Audio mixer for PipeWire
     openvpn3 # Open VPN 3 Client
     rtorrent # BitTorrent client
+    pdfarranger # Edit pdf pages
   ];
 
   # Enable zsh with plugins
