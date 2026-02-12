@@ -26,6 +26,7 @@
         pcsx_rearmed # PlayStation 1 core for retroarch
         beetle-psx-hw # Beetle PSX HW - Hardware-accelerated PS1 core
         swanstation # PlayStation 1 core (DuckStation fork)
+        pcsx2 # PlayStation 2 core for retroarch
       ]
     ))
   ];
