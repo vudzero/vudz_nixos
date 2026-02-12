@@ -165,6 +165,7 @@
     openvpn3 # Open VPN 3 Client
     rtorrent # BitTorrent client
     pdfarranger # Edit pdf pages
+    tableplus # Database manager
   ];
 
   # Enable zsh with plugins
