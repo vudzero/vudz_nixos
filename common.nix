@@ -159,6 +159,7 @@
     unzip # File compression utility
     opencode # OpenCode AI Assistant
     claude-code # Claude Code AI Assistant
+    codex # OpenAI Codex
     python314 # Python3 runtime
     sound-theme-freedesktop # Freedesktop sound theme for system sounds
     wiremix # Audio mixer for PipeWire
