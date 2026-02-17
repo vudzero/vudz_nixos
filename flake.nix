@@ -23,7 +23,7 @@
           ];
         };
 
-	# Framework desktop machine
+     	# Framework desktop machine
         framework = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
