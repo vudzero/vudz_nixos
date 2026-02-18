@@ -24,6 +24,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable iwd for WiFi management (required by impala)
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
+
   # Set your time zone.
   time.timeZone = "America/Toronto";
 
@@ -61,6 +65,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    impala # WiFi network manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

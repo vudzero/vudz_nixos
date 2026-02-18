@@ -73,7 +73,7 @@
     "tooltip-format-wifi": "{essid} ({signalStrength}%)",
     "tooltip-format-ethernet": "{ifname}: {ipaddr}",
     "tooltip-format-disconnected": "Disconnected",
-    "on-click": "alacritty -e impala"
+    "on-click": "alacritty --class impala -e impala"
   },
   "bluetooth": {
     "format": "󰂱",
@@ -82,7 +82,7 @@
     "tooltip-format": "{controller_alias}\t{controller_address}",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "alacritty -e bluetuith"
+    "on-click": "alacritty --class bluetuith -e bluetuith"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",

@@ -30,6 +30,14 @@ vim.opt.undofile = true         -- Persistent undo
 vim.opt.backup = false          -- No backup files
 vim.opt.swapfile = false        -- No swap files
 
+-- Netrw (built-in file explorer) settings
+vim.g.netrw_banner = 0          -- Hide the banner
+vim.g.netrw_liststyle = 3       -- Tree view style
+vim.g.netrw_browse_split = 0    -- Open files in the same window
+vim.g.netrw_altv = 1            -- Open splits to the right
+vim.g.netrw_winsize = 25        -- Window size when splitting
+vim.g.netrw_keepdir = 0         -- Keep the current directory the same as the browsing directory
+
 -- Key Mappings
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { desc = "Open file explorer" })
@@ -82,4 +90,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   command = [[%s/\s\+$//e]],
 })
 
-print("Vudz Neovim configuration loaded!")
+-- Configuration loaded successfully

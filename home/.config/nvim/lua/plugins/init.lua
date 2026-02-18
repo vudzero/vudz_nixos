@@ -20,6 +20,19 @@ local opts = {
   change_detection = {
     notify = false,
   },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
 }
 
 -- Setup lazy.nvim to load all plugins from lua/plugins/*.lua
@@ -90,6 +103,11 @@ return {
         pickers = {
           find_files = {
             find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
+          },
+          live_grep = {
+            additional_args = function()
+              return { "--hidden", "--glob", "!.git/*" }
+            end,
           },
         },
       })
