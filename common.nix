@@ -123,7 +123,7 @@
     lazygit # TUI for git operations
     ripgrep # Search tool
     vscode-fhs # Code editor with FHS environment for extensions
-    tmux # Terminal multiplexe
+
     wl-clipboard # OS Clipboard
     wtype # Wayland typing tool
     jq # JSON processor for scripts
@@ -167,6 +167,11 @@
     rtorrent # BitTorrent client
     pdfarranger # Edit pdf pages
     tableplus # Database manager
+
+    # Tmux and plugins
+    tmux
+    tmuxPlugins.resurrect
+    tmuxPlugins.continuum
   ];
 
   # Enable zsh with plugins
@@ -223,6 +228,12 @@
   systemd.tmpfiles.rules = [
     "d /home/matx/Pictures 0755 matx users -"
   ];
+
+  # Create symlinks for tmux plugins so they can be loaded from /etc/tmux-plugins
+  environment.etc."tmux-plugins/resurrect".source =
+    "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect";
+  environment.etc."tmux-plugins/continuum".source =
+    "${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum";
 
   # State version
   system.stateVersion = "25.11";
