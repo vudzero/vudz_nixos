@@ -7,15 +7,38 @@ return {
       options = {
         mode = "buffers",
         separator_style = "slant",
-        always_show_bufferline = false,
+        always_show_bufferline = true,
         show_buffer_close_icons = true,
         show_close_icon = false,
         color_icons = true,
+        close_command = "bp|bd %d",
         hover = {
           enabled = true,
           delay = 200,
           reveal = { "close" },
         },
+        offsets = {
+          {
+            filetype = "neo-tree",
+            text = "Neo Tree",
+            highlight = "Directory",
+            text_align = "left",
+            separator = true,
+          },
+        },
+        custom_filter = function(buf_number, buf_numbers)
+          local buftype = vim.bo[buf_number].buftype
+          local filetype = vim.bo[buf_number].filetype
+          -- Hide terminal buffers, quickfix, and file explorers
+          if buftype == "terminal" or buftype == "quickfix" then
+            return false
+          end
+          -- Hide neo-tree from bufferline
+          if filetype == "neo-tree" then
+            return false
+          end
+          return true
+        end,
       },
       highlights = {
         fill = {

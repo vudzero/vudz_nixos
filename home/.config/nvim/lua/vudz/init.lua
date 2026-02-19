@@ -30,20 +30,11 @@ vim.opt.undofile = true         -- Persistent undo
 vim.opt.backup = false          -- No backup files
 vim.opt.swapfile = false        -- No swap files
 
--- Netrw (built-in file explorer) settings
-vim.g.netrw_banner = 0          -- Hide the banner
-vim.g.netrw_liststyle = 3       -- Tree view style
-vim.g.netrw_browse_split = 0    -- Open files in the same window
-vim.g.netrw_altv = 1            -- Open splits to the right
-vim.g.netrw_winsize = 25        -- Window size when splitting
-vim.g.netrw_keepdir = 0         -- Keep the current directory the same as the browsing directory
-
 -- Key Mappings
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { desc = "Open file explorer" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
-vim.keymap.set("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>x", "<cmd>bp|bd #<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>X", "<cmd>bd!<CR>", { desc = "Force close buffer" })
 
 -- Telescope file search with Ctrl+P
