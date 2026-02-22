@@ -17,6 +17,7 @@
     "network",
     "bluetooth",
     "pulseaudio",
+    "battery",
     "custom/power"
   ],
   "hyprland/workspaces": {
@@ -95,6 +96,14 @@
       ]
     },
     "on-click": "~/.config/hypr/audio-switcher.sh"
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "states": {
+      "warning": 30,
+      "critical": 15
+    }
   },
   "clock": {
     "format": "{:%y-%m-%d %H:%M}",
