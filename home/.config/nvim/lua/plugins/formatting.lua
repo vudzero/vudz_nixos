@@ -2,7 +2,6 @@ return {
   -- Conform.nvim for formatting
   {
     "stevearc/conform.nvim",
-    event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     keys = {
       {

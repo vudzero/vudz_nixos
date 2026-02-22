@@ -149,6 +149,9 @@
     bluetuith # TUI-based bluetooth connection manager
     nodejs # JavaScript runtime (needed for Mason LSP servers)
     clang-tools # C/C++ language server (includes clangd)
+    cmake # Cross-platform build system
+    gnumake # GNU Make build tool
+    gcc # GNU C/C++ compiler (includes g++)
     dotnet-sdk_10 # .NET 10 SDK
     tailwindcss_4 # Tailwindcss V4 Cli
     openvpn # OpenVPN client for office VPN

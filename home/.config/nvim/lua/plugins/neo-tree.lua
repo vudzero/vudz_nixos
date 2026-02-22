@@ -118,14 +118,13 @@ return {
       nesting_rules = {},
       filesystem = {
         filtered_items = {
-          visible = false,
+          visible = true,
           hide_dotfiles = false,
-          hide_gitignored = true,
+          hide_gitignored = false,
           hide_hidden = false,
-          hide_by_name = {
-            "node_modules",
-            ".git",
-          },
+          hide_by_name = {},
+          always_show = { ".gitignore" },
+          never_show = { ".git" },
           hide_by_pattern = {},
           always_show = {},
           never_show = {},
