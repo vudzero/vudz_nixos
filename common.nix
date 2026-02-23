@@ -3,7 +3,6 @@
   config,
   pkgs,
   opencode,
-  codex,
   claudeCode,
   ...
 }:
@@ -165,7 +164,6 @@
     unzip # File compression utility
     opencode.packages.${pkgs.system}.default # OpenCode AI Assistant (from flake)
     claudeCode.packages.${pkgs.system}.default # Claude Code AI Assistant (from flake)
-    codex.packages.${pkgs.system}.default # OpenAI Codex (from flake)
     python314 # Python3 runtime
     sound-theme-freedesktop # Freedesktop sound theme for system sounds
     wiremix # Audio mixer for PipeWire

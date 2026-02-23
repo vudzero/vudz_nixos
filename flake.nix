@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     opencode.url = "github:anomalyco/opencode";
-    codex.url = "github:openai/codex";
     claudeCode.url = "github:sadjow/claude-code-nix";
   };
 
@@ -13,7 +12,6 @@
       self,
       nixpkgs,
       opencode,
-      codex,
       claudeCode,
       ...
     }:
@@ -24,7 +22,6 @@
           inherit system;
           modules = modules ++ [
             { _module.args.opencode = opencode; }
-            { _module.args.codex = codex; }
             { _module.args.claudeCode = claudeCode; }
           ];
         };
