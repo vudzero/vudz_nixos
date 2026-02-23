@@ -2,6 +2,9 @@
 {
   config,
   pkgs,
+  opencode,
+  codex,
+  claudeCode,
   ...
 }:
 
@@ -160,9 +163,9 @@
     btop # TUI system monitor for CPU/RAM/disk/network
     ncdu # TUI disk usage analyzer
     unzip # File compression utility
-    opencode # OpenCode AI Assistant
-    claude-code # Claude Code AI Assistant
-    codex # OpenAI Codex
+    opencode.packages.${pkgs.system}.default # OpenCode AI Assistant (from flake)
+    claudeCode.packages.${pkgs.system}.default # Claude Code AI Assistant (from flake)
+    codex.packages.${pkgs.system}.default # OpenAI Codex (from flake)
     python314 # Python3 runtime
     sound-theme-freedesktop # Freedesktop sound theme for system sounds
     wiremix # Audio mixer for PipeWire
