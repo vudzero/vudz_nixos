@@ -29,6 +29,7 @@ vim.opt.splitbelow = true       -- Horizontal split below
 vim.opt.undofile = true         -- Persistent undo
 vim.opt.backup = false          -- No backup files
 vim.opt.swapfile = false        -- No swap files
+vim.opt.autoread = true         -- Auto-reload files changed outside nvim
 
 -- Key Mappings
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -73,6 +74,13 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code a
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: Rename symbol" })
 
 -- Autocommands
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  group = vim.api.nvim_create_augroup("autoread", { clear = true }),
+  callback = function()
+    vim.cmd("checktime")
+  end,
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
   callback = function()
