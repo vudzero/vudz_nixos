@@ -7,7 +7,7 @@ vim.g.maplocalleader = " "
 
 -- General Settings
 vim.opt.number = true           -- Show line numbers
-vim.opt.relativenumber = true   -- Show relative line numbers
+vim.opt.relativenumber = false  -- Show absolute line numbers only
 vim.opt.mouse = "a"             -- Enable mouse support
 vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 vim.opt.ignorecase = true       -- Case insensitive search

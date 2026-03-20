@@ -143,6 +143,7 @@
     grim # Screenshot tool for Wayland
     slurp # Select a region in Wayland compositors
     swappy # Wayland native snapshot editing tool
+    wl-screenrec # Screen recorder for Wayland (outputs mp4)
     imv # Lightweight image viewer for Wayland
     mpv # Lightweight video player for Wayland
     yazi # Terminal file manager
@@ -171,6 +172,7 @@
     rtorrent # BitTorrent client
     pdfarranger # Edit pdf pages
     tableplus # Database manager
+    libsecret # Secret storage library for applications
 
     # Tmux and plugins
     tmux
@@ -187,6 +189,9 @@
 
   # Enable OpenVPN 3
   programs.openvpn3.enable = true;
+
+  # Enable GNOME Keyring for secure password storage
+  services.gnome.gnome-keyring.enable = true;
 
   # Git configuration
   programs.git = {

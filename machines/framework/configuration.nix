@@ -7,7 +7,6 @@
 {
   imports = [
     ../../gaming.nix # Load gaming configuration (Steam, MangoHud, RetroArch)
-    ../../ai.nix # Load AI/LLM configuration (Ollama, Open-WebUI)
   ];
 
   # Bootloader.
@@ -66,6 +65,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     impala # WiFi network manager
+    openldap # LDAP client libraries (libldap-2.5.so.0)
+    graphviz # Graph visualization tools (dot, neato, etc.)
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

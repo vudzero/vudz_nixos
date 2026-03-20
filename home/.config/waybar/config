@@ -11,6 +11,7 @@
   ],
   "modules-right": [
     "custom/hypridle",
+    "custom/scale",
     "cpu",
     "custom/gpu",
     "memory",
@@ -61,6 +62,11 @@
     "return-type": "json",
     "interval": 2,
     "on-click": "~/.config/hypr/toggle-hypridle.sh"
+  },
+  "custom/scale": {
+    "format": "󰍹",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/scale-selector.sh"
   },
   "memory": {
     "format": "RAM {used:0.1f}G",

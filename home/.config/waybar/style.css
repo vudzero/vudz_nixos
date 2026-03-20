@@ -59,6 +59,15 @@ window#waybar {
     font-size: 16px;
 }
 
+#custom-scale {
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
 #custom-hypridle.enabled {
     color: #4CAF50;
 }
