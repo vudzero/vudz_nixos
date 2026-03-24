@@ -170,6 +170,7 @@
     wiremix # Audio mixer for PipeWire
     openvpn3 # Open VPN 3 Client
     rtorrent # BitTorrent client
+    transmission_4-gtk # Lightweight GUI BitTorrent client
     pdfarranger # Edit pdf pages
     tableplus # Database manager
     libsecret # Secret storage library for applications
