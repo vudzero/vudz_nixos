@@ -146,7 +146,7 @@
     wl-screenrec # Screen recorder for Wayland (outputs mp4)
     imv # Lightweight image viewer for Wayland
     mpv # Lightweight video player for Wayland
-    yazi # Terminal file manager
+    nautilus # GNOME file manager
     carapace # Multi-shell completion generator
     zsh-completions # Additional zsh completion definitions
     bluetuith # TUI-based bluetooth connection manager
