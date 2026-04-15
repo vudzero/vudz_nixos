@@ -172,6 +172,7 @@
     rtorrent # BitTorrent client
     transmission_4-gtk # Lightweight GUI BitTorrent client
     pdfarranger # Edit pdf pages
+    kdePackages.okular # Fill PDF forms and annotate documents
     tableplus # Database manager
     libsecret # Secret storage library for applications
 
@@ -193,6 +194,12 @@
 
   # Enable GNOME Keyring for secure password storage
   services.gnome.gnome-keyring.enable = true;
+
+  # Enable GVFS for Nautilus USB automount support
+  services.gvfs.enable = true;
+
+  # Enable udisks2 for USB auto-mounting
+  services.udisks2.enable = true;
 
   # Git configuration
   programs.git = {
