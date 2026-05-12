@@ -12,6 +12,7 @@
   "modules-right": [
     "custom/hypridle",
     "custom/scale",
+    "custom/kinova-vpn",
     "cpu",
     "custom/gpu",
     "memory",
@@ -116,6 +117,13 @@
   "clock": {
     "format": "{:%y-%m-%d %H:%M}",
     "tooltip-format": "{:%Y-%m-%d %H:%M:%S}"
+  },
+  "custom/kinova-vpn": {
+    "exec": "~/.config/waybar/scripts/kinova-vpn.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "~/.config/waybar/scripts/kinova-vpn-toggle.sh",
+    "tooltip": true
   },
   "custom/power": {
     "format": "⏻",

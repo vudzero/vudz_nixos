@@ -19,6 +19,7 @@
   # Gaming packages
   environment.systemPackages = with pkgs; [
     godot
+    godot_4-mono
     mangohud # Performance overlay for games
     (retroarch.withCores (
       cores: with cores; [

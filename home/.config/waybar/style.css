@@ -124,6 +124,27 @@ window#waybar {
     border-radius: 4px;
 }
 
+#custom-kinova-vpn {
+    margin: 4px 0 6px 0;
+    padding: 0 10px;
+    color: #000000;
+    background-color: #ddddff;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#custom-kinova-vpn.connected {
+    color: #4CAF50;
+}
+
+#custom-kinova-vpn.connecting {
+    color: #FF9800;
+}
+
+#custom-kinova-vpn.disconnected {
+    color: #888888;
+}
+
 #custom-power {
     margin: 4px 0 6px 0;
     padding: 0 10px;
