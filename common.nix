@@ -173,6 +173,7 @@
     transmission_4-gtk # Lightweight GUI BitTorrent client
     pdfarranger # Edit pdf pages
     kdePackages.okular # Fill PDF forms and annotate documents
+    material-maker # Procedural materials authoring tool
     tableplus # Database manager
     libsecret # Secret storage library for applications
 
