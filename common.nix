@@ -120,7 +120,7 @@
     alacritty # Terminal emulator
     google-chrome # Browser
     firefox # Browser
-    waybar # OS Toolbar
+    quickshell # Wayland shell toolkit (bar/panel)
     git # Code version control
     lazygit # TUI for git operations
     ripgrep # Search tool
