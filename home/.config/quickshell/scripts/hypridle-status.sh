@@ -1,5 +1,5 @@
 #!/bin/bash
-if pgrep -x "hypridle" > /dev/null; then
+if systemctl --user is-active --quiet hypridle.service; then
     echo "💤"
 else
     echo "🎮"

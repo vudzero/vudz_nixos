@@ -77,8 +77,8 @@ PanelWindow {
 
     // ── Click-action processes ────────────────────────────────────────────
     Process { id: procHypridle;  command: ["bash", "-c", "$HOME/.config/hypr/toggle-hypridle.sh"] }
-    Process { id: procScale;     command: ["bash", "-c", "$HOME/.config/waybar/scripts/scale-selector.sh"] }
-    Process { id: procVpnToggle; command: ["bash", "-c", "$HOME/.config/waybar/scripts/kinova-vpn-toggle.sh"] }
+    Process { id: procScale;     command: ["bash", "-c", "$HOME/.config/quickshell/scripts/scale-selector.sh"] }
+    Process { id: procVpnToggle; command: ["bash", "-c", "$HOME/.config/quickshell/scripts/kinova-vpn-toggle.sh"] }
     Process { id: procNetwork;   command: ["alacritty", "--class", "impala", "-e", "impala"] }
     Process { id: procBluetooth; command: ["alacritty", "--class", "bluetuith", "-e", "bluetuith"] }
     Process { id: procAudio;     command: ["bash", "-c", "$HOME/.config/hypr/audio-switcher.sh"] }
