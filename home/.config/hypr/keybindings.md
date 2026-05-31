@@ -9,7 +9,6 @@
 | SUPER + SHIFT + R| Reload config                        |
 | SUPER + SHIFT + Q| Exit Hyprland                        |
 | SUPER + SHIFT + L| Lock and suspend                     |
-| SUPER + G        | Toggle hypridle                      |
 | SUPER + SHIFT + S| Screenshot to clipboard              |
 | SUPER + SHIFT + E| Screenshot to editor                 |
 | SUPER + A        | Audio device switcher                |

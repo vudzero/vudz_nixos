@@ -129,8 +129,6 @@
     wl-clipboard # OS Clipboard
     wtype # Wayland typing tool
     jq # JSON processor for scripts
-    rofi # App launcher
-    hypridle # Idle management for Hyprland
     hyprcursor # Cursor theme system for Hyprland
     rose-pine-hyprcursor # Rose Pine cursor theme for hyprcursor
     libnotify # Send desktop notifications (provides notify-send)
@@ -146,7 +144,6 @@
     nautilus # GNOME file manager
     carapace # Multi-shell completion generator
     zsh-completions # Additional zsh completion definitions
-    bluetuith # TUI-based bluetooth connection manager
     nodejs # JavaScript runtime (needed for Mason LSP servers)
     clang-tools # C/C++ language server (includes clangd)
     cmake # Cross-platform build system
@@ -157,19 +154,15 @@
     openvpn # OpenVPN client for office VPN
     nixfmt # Nix File formatter
     btop # TUI system monitor for CPU/RAM/disk/network
-    ncdu # TUI disk usage analyzer
     unzip # File compression utility
     opencode.packages.${pkgs.system}.default # OpenCode AI Assistant (from flake)
     claudeCode.packages.${pkgs.system}.default # Claude Code AI Assistant (from flake)
     python314 # Python3 runtime
     sound-theme-freedesktop # Freedesktop sound theme for system sounds
-    wiremix # Audio mixer for PipeWire
     openvpn3 # Open VPN 3 Client
-    rtorrent # BitTorrent client
     transmission_4-gtk # Lightweight GUI BitTorrent client
     pdfarranger # Edit pdf pages
     kdePackages.okular # Fill PDF forms and annotate documents
-    material-maker # Procedural materials authoring tool
     tableplus # Database manager
     libsecret # Secret storage library for applications
 
