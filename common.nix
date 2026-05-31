@@ -131,11 +131,8 @@
     jq # JSON processor for scripts
     rofi # App launcher
     hypridle # Idle management for Hyprland
-    swaylock # Screen locker for Wayland
-    hyprpaper # Wallpaper manager for Hyprland
     hyprcursor # Cursor theme system for Hyprland
     rose-pine-hyprcursor # Rose Pine cursor theme for hyprcursor
-    mako # Notification daemon for Wayland
     libnotify # Send desktop notifications (provides notify-send)
     spotify # Music player
     discord # Chat tool
@@ -159,7 +156,6 @@
     tailwindcss_4 # Tailwindcss V4 Cli
     openvpn # OpenVPN client for office VPN
     nixfmt # Nix File formatter
-    wlogout # Wayland logout/power menu
     btop # TUI system monitor for CPU/RAM/disk/network
     ncdu # TUI disk usage analyzer
     unzip # File compression utility
@@ -192,6 +188,23 @@
 
   # Enable OpenVPN 3
   programs.openvpn3.enable = true;
+
+  # Enable DankMaterialShell (DMS) — a complete desktop shell for Wayland
+  programs.dms-shell = {
+    enable = true;
+
+    systemd = {
+      enable = true;
+      restartIfChanged = true;
+    };
+
+    enableSystemMonitoring = true;
+    enableVPN = true;
+    enableDynamicTheming = true;
+    enableAudioWavelength = true;
+    enableCalendarEvents = true;
+    enableClipboardPaste = true;
+  };
 
   # Enable GNOME Keyring for secure password storage
   services.gnome.gnome-keyring.enable = true;

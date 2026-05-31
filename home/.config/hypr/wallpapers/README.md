@@ -1,5 +1,5 @@
 # Wallpapers
 
-Place your wallpaper image here as `wallpaper.jpg` to use it with hyprpaper.
-
-You can use any image format supported by hyprpaper (jpg, png, etc.), just update the filename in `hyprpaper.conf` if needed.
+Wallpaper images for the desktop. DankMaterialShell (DMS) handles wallpaper
+display — set the wallpaper through DMS (Settings → Wallpaper, or
+`dms ipc call wallpaper set <path>`) and point it at an image in this folder.

@@ -3,7 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    opencode.url = "github:anomalyco/opencode";
+    # Pinned: v1.15.5+ bump packageManager to bun@1.3.14, which isn't in nixpkgs
+    # yet (only 1.3.13). v1.15.4 is the newest release that still builds.
+    opencode.url = "github:anomalyco/opencode/2b92c5677e83";
     claudeCode.url = "github:sadjow/claude-code-nix";
   };
 

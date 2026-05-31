@@ -89,7 +89,7 @@ This configuration uses a flake package: `github:sadjow/claude-code-nix` for Cla
 ### Hyprland Configuration
 Hyprland is configured with:
 - Idle management via `hypridle` (turns off display after 10 minutes, suspends after 15 minutes)
-- Screen locking via `hyprlock`
+- Screen locking via DankMaterialShell (`dms ipc call lock lock`)
 - Auto-start of waybar, terminal, and browser
 - Configuration files located in `home/.config/hypr/`
 
