@@ -8,3 +8,6 @@ hyprctl keyword monitor "eDP-1, 2560x1600, 0x0, 1"
 for i in {1..9}; do
     hyprctl dispatch moveworkspacetomonitor $i eDP-1
 done
+
+# Restart waybar to redraw it on the laptop display
+pkill waybar && nohup waybar >/dev/null 2>&1 &

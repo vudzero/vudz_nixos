@@ -9,6 +9,16 @@
 {
   networking.hostName = "laptop";
 
+  # Use kernel 6.18
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+
+  # Fix backlight/brightness control for newer kernels
+  boot.kernelParams = [
+    "acpi_backlight=native"
+    "video.use_native_backlight=1"
+  ];
+  hardware.acpilight.enable = true;
+
   # Enable PREEMPT_RT for realtime performance
   #boot.kernelPackages = pkgs.linuxPackages_6_12.extend (
   #  self: super: {
@@ -47,5 +57,6 @@
     powertop # Power consumption analyzer
     acpi # Battery status tool
     impala # WiFi network manager
+    brightnessctl # Brightness control tool
   ];
 }
