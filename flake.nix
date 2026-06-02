@@ -7,6 +7,13 @@
     # yet (only 1.3.13). v1.15.4 is the newest release that still builds.
     opencode.url = "github:anomalyco/opencode/2b92c5677e83";
     claudeCode.url = "github:sadjow/claude-code-nix";
+    # Local checkout of the Kinova EtherCAT master fork (laptop only). Tracks
+    # committed state on the `development` branch; run
+    # `nix flake lock --update-input etherlab` after committing source changes.
+    etherlab = {
+      url = "git+file:///home/matx/src/etherlab_master?ref=development";
+      flake = false;
+    };
   };
 
   outputs =
@@ -15,6 +22,7 @@
       nixpkgs,
       opencode,
       claudeCode,
+      etherlab,
       ...
     }:
     let
@@ -57,6 +65,9 @@
             ./machines/laptop/hardware-configuration.nix
             ./machines/laptop/configuration.nix
             ./common.nix
+            # EtherCAT source, passed only to the laptop so other machines never
+            # force (and therefore never need to fetch) the etherlab input.
+            { _module.args.etherlab = etherlab; }
           ];
         };
 

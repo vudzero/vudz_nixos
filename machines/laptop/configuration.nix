@@ -7,6 +7,8 @@
 }:
 
 {
+  imports = [ ./etherlab.nix ];
+
   networking.hostName = "laptop";
 
   # Use kernel 6.18
@@ -16,6 +18,11 @@
   boot.kernelParams = [
     "acpi_backlight=native"
     "video.use_native_backlight=1"
+    # MES (Micro Engine Scheduler) ring buffer fills up and never drains on
+    # Strix Point APUs, causing a hard GPU hang that takes the whole system down.
+    # Disabling MES falls back to CPU-side scheduling with no noticeable impact
+    # on desktop workloads.
+    "amdgpu.mes=0"
   ];
   hardware.acpilight.enable = true;
 
@@ -40,6 +47,7 @@
   services.thermald.enable = true;
   powerManagement.enable = true;
 
+  services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;
     settings = {

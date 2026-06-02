@@ -120,6 +120,26 @@ launch_chrome_profile() {
     fi
 }
 
+# Wait for the notification daemon (DMS) before launching browsers.
+# Chrome decides at startup whether a freedesktop notification server exists;
+# if it launches first, it permanently falls back to its own windowed message
+# center (notifications tile as windows instead of DMS overlay popups).
+wait_for_notifications() {
+    local timeout="${1:-10}"
+    local max_iterations=$((timeout * 5))
+    local iterations=0
+    while [ $iterations -lt $max_iterations ]; do
+        if busctl --user status org.freedesktop.Notifications >/dev/null 2>&1; then
+            return 0
+        fi
+        sleep 0.2
+        ((iterations++))
+    done
+    echo "WARNING: notification daemon (DMS) not up after ${timeout}s; launching anyway" >&2
+    return 1
+}
+wait_for_notifications
+
 # Workspace 1: Alacritty terminal
 if launch_app_and_move 1 "alacritty" "Alacritty" "Alacritty"; then
     ((SUCCESS_COUNT++))

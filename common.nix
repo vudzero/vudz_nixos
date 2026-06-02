@@ -125,6 +125,7 @@
     lazygit # TUI for git operations
     ripgrep # Search tool
     vscode-fhs # Code editor with FHS environment for extensions
+    jetbrains.rider # .NET IDE
 
     wl-clipboard # OS Clipboard
     wtype # Wayland typing tool
@@ -149,6 +150,12 @@
     cmake # Cross-platform build system
     gnumake # GNU Make build tool
     gcc # GNU C/C++ compiler (includes g++)
+    autoconf # Generates configure scripts (provides autoreconf)
+    automake # Generates Makefile.in (used by autoreconf)
+    libtool # Generic library support (used by autoreconf)
+    pkgconf # Compiler/linker flags helper (provides pkgconf)
+    pkg-config # Provides the pkg-config command (pkgconf backend)
+    config.boot.kernelPackages.kernel.dev # Kernel build headers matching the running kernel
     dotnet-sdk_10 # .NET 10 SDK
     tailwindcss_4 # Tailwindcss V4 Cli
     openvpn # OpenVPN client for office VPN
