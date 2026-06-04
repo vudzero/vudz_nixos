@@ -189,6 +189,9 @@
   # Enable OpenVPN 3
   programs.openvpn3.enable = true;
 
+  # Enable nix-ld for running unpatched pre-compiled Linux binaries
+  programs.nix-ld.enable = true;
+
   # Enable DankMaterialShell (DMS) — a complete desktop shell for Wayland
   programs.dms-shell = {
     enable = true;
