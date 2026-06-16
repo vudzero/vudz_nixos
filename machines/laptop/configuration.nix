@@ -46,17 +46,24 @@
   # Laptop power management
   services.thermald.enable = true;
   powerManagement.enable = true;
+  services.upower.enable = true;
 
-  services.power-profiles-daemon.enable = false;
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  # power-profiles-daemon handles CPU governors (replaces TLP)
+  # and enables DMS power profile switching in the toolbar
+  services.power-profiles-daemon.enable = true;
 
-      # Battery conservation
-      START_CHARGE_THRESH_BAT0 = 75;
-      STOP_CHARGE_THRESH_BAT0 = 80;
+  # Battery charge conservation: stop charging at 80%, resume at 75%
+  # power-profiles-daemon does not manage charge thresholds, so we do it here
+  systemd.services.battery-charge-limit = {
+    description = "Set battery charge thresholds";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = pkgs.writeShellScript "set-charge-limit" ''
+        echo 75 > /sys/class/power_supply/BAT0/charge_control_start_threshold
+        echo 80 > /sys/class/power_supply/BAT0/charge_control_end_threshold
+      '';
     };
   };
 
