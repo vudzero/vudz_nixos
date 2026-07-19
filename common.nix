@@ -50,6 +50,11 @@
   # Enable bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+    };
+  };
 
   # Set your time zone
   time.timeZone = "America/Toronto";
@@ -189,7 +194,7 @@
   # Enable OpenVPN 3
   programs.openvpn3.enable = true;
 
-  # Enable nix-ld for running unpatched pre-compiled Linux binaries
+  # Enable nix-ld for running prebuilt binaries (.run files, etc.)
   programs.nix-ld.enable = true;
 
   # Enable DankMaterialShell (DMS) — a complete desktop shell for Wayland
