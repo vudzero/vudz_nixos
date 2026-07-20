@@ -73,6 +73,7 @@ let
       "--with-linux-dir=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
       "--enable-kernel=yes"
       "--enable-generic"
+      "--enable-hrtimer"
       "--enable-tool=no"
       "--enable-userlib=no"
       "--without-systemdsystemunitdir"

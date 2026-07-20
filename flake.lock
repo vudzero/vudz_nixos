@@ -22,11 +22,11 @@
     "etherlab": {
       "flake": false,
       "locked": {
-        "lastModified": 1777395660,
-        "narHash": "sha256-p91vtlpE+JDDaMJ8lHAAoLBJ9mtLu05vLjF9jhOtAYQ=",
+        "lastModified": 1783341867,
+        "narHash": "sha256-KVxzbCYbI/L0u55Q2Ugy9cTd86lCZ9P/bdAXGtM/M00=",
         "ref": "development",
-        "rev": "c4a3a4d49e470d23e47866013a4a2807ea15d114",
-        "revCount": 3007,
+        "rev": "711f6e9715785818574d7dddd706df3a5f8b2632",
+        "revCount": 3017,
         "type": "git",
         "url": "file:///home/matx/src/etherlab_master"
       },

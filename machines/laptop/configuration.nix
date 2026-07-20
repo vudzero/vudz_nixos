@@ -74,6 +74,13 @@
   networking.firewall.allowedUDPPortRanges = [
     { from = 7400; to = 7440; }
   ];
+  
+  # Enable Steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
 
   # Laptop-specific packages
   environment.systemPackages = with pkgs; [
