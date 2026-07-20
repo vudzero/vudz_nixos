@@ -109,6 +109,16 @@ in
     KERNEL=="EtherCAT[0-9]*", MODE="0660", GROUP="wheel"
   '';
 
+  # Fixed IP for enp195s0f0 (RTI DDS multicast/EtherCAT NIC). NetworkManager
+  # must not touch it, since a static address is set declaratively below.
+  networking.networkmanager.unmanaged = [ "enp195s0f0" ];
+  networking.interfaces.enp195s0f0.ipv4.addresses = [
+    {
+      address = "192.168.1.13";
+      prefixLength = 24;
+    }
+  ];
+
   # Master runtime configuration (sourced by ethercatctl).
   # Edit and redeploy to change the EtherCAT NIC or driver.
   environment.etc."ethercat.conf".text = ''
@@ -119,17 +129,34 @@ in
     # EtherCAT r8169 driver exists for kernel 6.x).
     DEVICE_MODULES="generic"
 
-    # The generic driver needs the interface up before the master starts; bring
-    # it up on start and down on stop.
-    UPDOWN_INTERFACES="enp195s0f0"
+    # Left empty: ethercatctl would otherwise bring this interface down on
+    # stop. The interface is kept up independently (see enp195s0f0-up.service
+    # below) so it survives the master stopping/restarting.
+    UPDOWN_INTERFACES=""
   '';
+
+  # The generic driver needs enp195s0f0 up before the master starts, and it
+  # must stay up regardless of the ethercat service's state (ethercatctl no
+  # longer manages it — see UPDOWN_INTERFACES above).
+  systemd.services."enp195s0f0-up" = {
+    description = "Keep enp195s0f0 up for EtherCAT generic driver";
+    wantedBy = [ "multi-user.target" ];
+    before = [ "ethercat.service" ];
+    path = [ pkgs.iproute2 ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.iproute2}/bin/ip link set enp195s0f0 up";
+    };
+  };
 
   # systemd unit mirroring upstream ethercat.service, wired to NixOS paths and
   # /etc/ethercat.conf. Not enabled — start manually with:
   #   sudo systemctl start ethercat
   systemd.services.ethercat = {
     description = "EtherCAT Master Kernel Modules";
-    after = [ "network.target" ];
+    after = [ "network.target" "enp195s0f0-up.service" ];
+    wants = [ "enp195s0f0-up.service" ];
     path = with pkgs; [
       bash
       coreutils

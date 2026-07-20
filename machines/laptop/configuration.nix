@@ -67,6 +67,14 @@
     };
   };
 
+  # Open firewall for RTI Connext DDS discovery/multicast on domain 0.
+  # Default RTPS port formula: PB(7400) + DG(250)*domainId + PG(2)*participantId [+10/+11].
+  # This range covers discovery (7400/7401) plus unicast metatraffic/user-data
+  # ports for several participants on domain 0.
+  networking.firewall.allowedUDPPortRanges = [
+    { from = 7400; to = 7440; }
+  ];
+
   # Laptop-specific packages
   environment.systemPackages = with pkgs; [
     powertop # Power consumption analyzer
