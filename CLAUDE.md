@@ -83,8 +83,21 @@ The following environment variables are set for Wayland compatibility:
 - `XCURSOR_SIZE = "48"`
 - `XCURSOR_THEME = "Adwaita"`
 
-### Flake Packages
-This configuration uses a flake package: `github:sadjow/claude-code-nix` for Claude Code.
+### AI Coding Agents
+Agents come from the separate flake input `llm-agents`
+(`github:numtide/llm-agents.nix`), installed via `common.nix`. That input does
+**not** follow `nixpkgs`, so agent versions and system package versions update
+independently:
+
+```bash
+./deploy-nixos.sh --update-agents   # bump only claude / opencode / grok, then rebuild
+./deploy-nixos.sh --update-system   # bump only nixpkgs, then rebuild
+./deploy-nixos.sh                   # rebuild current flake.lock (no version bumps)
+```
+
+Installed agents: `claude-code`, `opencode`, `grok`. Add more from the
+[llm-agents.nix catalogue](https://github.com/numtide/llm-agents.nix) in
+`common.nix` as `llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.<name>`.
 
 ### Hyprland Configuration
 Hyprland is configured with:

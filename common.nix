@@ -2,8 +2,7 @@
 {
   config,
   pkgs,
-  opencode,
-  claudeCode,
+  llm-agents,
   ...
 }:
 
@@ -14,7 +13,13 @@
     "flakes"
   ];
 
-  # Automatic garbage collection to keep only last 5 generationsopencode-flake.packages.${pkgs.system}.default
+  # Numtide binary cache for llm-agents (claude-code, opencode, grok, …)
+  nix.settings.extra-substituters = [ "https://cache.numtide.com" ];
+  nix.settings.extra-trusted-public-keys = [
+    "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+  ];
+
+  # Automatic garbage collection to keep only last 5 generations
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -167,8 +172,14 @@
     nixfmt # Nix File formatter
     btop # TUI system monitor for CPU/RAM/disk/network
     unzip # File compression utility
-    opencode.packages.${pkgs.system}.default # OpenCode AI Assistant (from flake)
-    claudeCode.packages.${pkgs.system}.default # Claude Code AI Assistant (from flake)
+    herdr # Agent multiplexer (tmux-like UI for coding agents)
+    # AI coding agents from flake input llm-agents (numtide/llm-agents.nix).
+    # Versions track that input only — not nixpkgs. Update with:
+    #   ./deploy-nixos.sh --update-agents
+    # or: nix flake update llm-agents && ./deploy-nixos.sh
+    llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
+    llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
+    llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.grok
     python314 # Python3 runtime
     sound-theme-freedesktop # Freedesktop sound theme for system sounds
     openvpn3 # Open VPN 3 Client

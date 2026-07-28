@@ -1,12 +1,21 @@
 {
   description = "Multi-machine NixOS configuration";
 
+  # Numtide binary cache for prebuilt llm-agents packages (claude-code, opencode, grok, …)
+  nixConfig = {
+    extra-substituters = [ "https://cache.numtide.com" ];
+    extra-trusted-public-keys = [
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Pinned: v1.15.5+ bump packageManager to bun@1.3.14, which isn't in nixpkgs
-    # yet (only 1.3.13). v1.15.4 is the newest release that still builds.
-    opencode.url = "github:anomalyco/opencode/2b92c5677e83";
-    claudeCode.url = "github:sadjow/claude-code-nix";
+    # AI coding agents (claude-code, opencode, grok, …). Separate input so
+    # `nix flake update llm-agents` (or ./deploy-nixos.sh --update-agents)
+    # bumps only agents — not the rest of the system.
+    # Intentionally does NOT follow nixpkgs (keeps Numtide's prebuilt cache).
+    llm-agents.url = "github:numtide/llm-agents.nix";
     # Local checkout of the Kinova EtherCAT master fork (laptop only). Tracks
     # committed state on the `development` branch; run
     # `nix flake lock --update-input etherlab` after committing source changes.
@@ -20,8 +29,7 @@
     {
       self,
       nixpkgs,
-      opencode,
-      claudeCode,
+      llm-agents,
       etherlab,
       ...
     }:
@@ -31,8 +39,7 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = modules ++ [
-            { _module.args.opencode = opencode; }
-            { _module.args.claudeCode = claudeCode; }
+            { _module.args.llm-agents = llm-agents; }
           ];
         };
     in

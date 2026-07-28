@@ -2,25 +2,69 @@
 
 set -e
 
-# Detect machine name or use argument
-MACHINE="${1:-}"
+# Parse args: optional machine name + flags
+MACHINE=""
+UPDATE_AGENTS=0
+UPDATE_SYSTEM=0
+
+usage() {
+    echo "Usage: $0 [machine] [--update-agents] [--update-system]"
+    echo ""
+    echo "Deploy the NixOS flake for a machine. Package versions only change when"
+    echo "flake inputs are updated — a plain deploy rebuilds the current lock."
+    echo ""
+    echo "Machines:"
+    echo "  desktop | framework | laptop"
+    echo "  (omit to auto-detect from hostname)"
+    echo ""
+    echo "Flags:"
+    echo "  --update-agents   Update only the llm-agents input (claude, opencode, grok),"
+    echo "                    then rebuild. Does not bump nixpkgs or other inputs."
+    echo "  --update-system   Update only the nixpkgs input, then rebuild."
+    echo "                    Does not bump llm-agents."
+    echo ""
+    echo "Examples:"
+    echo "  $0                      # rebuild current lock (auto-detect machine)"
+    echo "  $0 desktop              # rebuild for desktop"
+    echo "  $0 --update-agents      # bump AI agents only, then rebuild"
+    echo "  $0 laptop --update-agents"
+}
+
+for arg in "$@"; do
+    case "$arg" in
+        -h | --help)
+            usage
+            exit 0
+            ;;
+        --update-agents)
+            UPDATE_AGENTS=1
+            ;;
+        --update-system)
+            UPDATE_SYSTEM=1
+            ;;
+        -*)
+            echo "Unknown option: $arg" >&2
+            usage >&2
+            exit 1
+            ;;
+        *)
+            if [ -n "$MACHINE" ]; then
+                echo "Error: multiple machine names given ('$MACHINE' and '$arg')" >&2
+                exit 1
+            fi
+            MACHINE="$arg"
+            ;;
+    esac
+done
 
 if [ -z "$MACHINE" ]; then
-    # Auto-detect based on hostname
     CURRENT_HOSTNAME=$(hostname)
 
     if [ "$CURRENT_HOSTNAME" = "desktop" ] || [ "$CURRENT_HOSTNAME" = "laptop" ] || [ "$CURRENT_HOSTNAME" = "framework" ]; then
         MACHINE="$CURRENT_HOSTNAME"
         echo "Auto-detected machine: $MACHINE"
     else
-        echo "Usage: $0 <machine>"
-        echo ""
-        echo "Available machines:"
-        echo "  - desktop (with NVIDIA)"
-        echo "  - framework"
-        echo "  - laptop (with power management)"
-        echo ""
-        echo "Or set your hostname to 'desktop', 'laptop', or 'framework' for auto-detection."
+        usage >&2
         exit 1
     fi
 fi
@@ -52,6 +96,19 @@ if [ ! -f "$MACHINE_DIR/hardware-configuration.nix" ]; then
     fi
 fi
 
+# Optionally bump individual flake inputs before rebuild
+if [ "$UPDATE_AGENTS" -eq 1 ]; then
+    echo "Updating llm-agents input only (AI coding agents)..."
+    nix flake update llm-agents
+    echo ""
+fi
+
+if [ "$UPDATE_SYSTEM" -eq 1 ]; then
+    echo "Updating nixpkgs input only (system packages)..."
+    nix flake update nixpkgs
+    echo ""
+fi
+
 echo "Deploying NixOS configuration with flake..."
 sudo nixos-rebuild switch --flake ".#$MACHINE"
 
@@ -61,3 +118,4 @@ echo ""
 echo "Next steps:"
 echo "  - Commit your changes: git add . && git commit -m 'Update configuration'"
 echo "  - On a new machine, run: ./deploy-nixos.sh <machine-name>"
+echo "  - Bump only AI agents later: ./deploy-nixos.sh --update-agents"
