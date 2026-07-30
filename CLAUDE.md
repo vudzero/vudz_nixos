@@ -100,10 +100,13 @@ Installed agents: `claude-code`, `opencode`, `grok`. Add more from the
 `common.nix` as `llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.<name>`.
 
 ### Hyprland Configuration
-Hyprland is configured with:
+Hyprland is configured with Lua (0.55+; hyprlang `.conf` is deprecated):
 - Idle management and screen locking via DankMaterialShell (DMS)
 - Auto-start of waybar, terminal, and browser
 - Configuration files located in `home/.config/hypr/`
+  - `hyprland.lua` — main config (monitors, env, input, window rules, autostart)
+  - `keybindings.lua` — keybinds
+  - `looknfeel.lua` — decorations, animations, layouts
 
 ## Adding Packages
 
