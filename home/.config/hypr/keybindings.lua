@@ -77,6 +77,10 @@ hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ direction = "right" 
 hl.bind(mainMod .. " + SHIFT + up",    hl.dsp.window.move({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + down",  hl.dsp.window.move({ direction = "down" }))
 
+-- Move active workspace to previous / next monitor (Hyprland 0.55+ Lua API)
+hl.bind(mainMod .. " + ALT + left",  hl.dsp.workspace.move({ monitor = "-1" }))
+hl.bind(mainMod .. " + ALT + right", hl.dsp.workspace.move({ monitor = "+1" }))
+
 ------------------------
 ---- VOLUME CONTROLS ----
 ------------------------
