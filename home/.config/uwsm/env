@@ -1,0 +1,8 @@
+# UWSM session environment (sourced for all UWSM-managed compositors).
+# https://github.com/Vladimir-csp/uwsm#environment
+#
+# System-wide NIXOS_OZONE_WL is also set in common.nix; keep these here so
+# apps launched in UWSM app scopes always inherit Wayland Electron hints.
+
+export NIXOS_OZONE_WL=1
+export ELECTRON_OZONE_PLATFORM_HINT=wayland

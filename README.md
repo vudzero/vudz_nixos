@@ -42,7 +42,7 @@ Portable NixOS system configuration for Wayland-based environments with Sway/Hyp
 - **Browser**: Chromium (with WideVine DRM)
 - **Editor**: VSCode, Neovim
 - **Shell**: Zsh with Oh My Zsh
-- **Development**: .NET SDK 10, Git, Tmux
+- **Development**: .NET SDK 10, Git
 - **Tools**: Claude Code, Walker, Waybar, wl-clipboard
 
 ## See Also

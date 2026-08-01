@@ -1,0 +1,5 @@
+# Hyprland-specific UWSM environment.
+# Cursor theme is also set via hl.env in hyprland.lua for the compositor itself.
+
+export HYPRCURSOR_SIZE=32
+export HYPRCURSOR_THEME=rose-pine-hyprcursor

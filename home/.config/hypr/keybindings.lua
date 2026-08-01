@@ -3,14 +3,14 @@
 
 local mainMod = "SUPER"
 
--- Launch terminal
-hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("alacritty"))
+-- Launch terminal / file manager via UWSM app scopes
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("uwsm app -- alacritty"))
 
--- Launch application launcher (DMS spotlight)
+-- Launch application launcher (DMS spotlight — IPC to existing service)
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("dms ipc call spotlight toggle"))
 
 -- Launch file manager
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("nautilus"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("uwsm app -- nautilus"))
 
 -- Close window
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())

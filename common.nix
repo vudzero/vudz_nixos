@@ -188,11 +188,6 @@
     kdePackages.okular # Fill PDF forms and annotate documents
     tableplus # Database manager
     libsecret # Secret storage library for applications
-
-    # Tmux and plugins
-    tmux
-    tmuxPlugins.resurrect
-    tmuxPlugins.continuum
   ];
 
   # Enable zsh with plugins
@@ -218,7 +213,6 @@
     };
 
     enableSystemMonitoring = true;
-    enableVPN = true;
     enableDynamicTheming = true;
     enableAudioWavelength = true;
     enableCalendarEvents = true;
@@ -243,13 +237,21 @@
     };
   };
 
-  # Display manager and window manager
+  # Display manager (DankGreeter via greetd) and window manager
   services.xserver.enable = true;
-  services.displayManager.gdm.enable = true;
+  services.displayManager.dms-greeter = {
+    enable = true;
+    compositor.name = "hyprland";
+    # Sync DankMaterialShell theme/settings into the greeter
+    configHome = "/home/matx";
+  };
 
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    # Session manager: pick "Hyprland (uwsm-managed)" at the greeter.
+    # Enables programs.uwsm (systemd session units, dbus-broker, uwsm on PATH).
+    withUWSM = true;
   };
 
   # Enable PipeWire audio service
@@ -278,12 +280,6 @@
   systemd.tmpfiles.rules = [
     "d /home/matx/Pictures 0755 matx users -"
   ];
-
-  # Create symlinks for tmux plugins so they can be loaded from /etc/tmux-plugins
-  environment.etc."tmux-plugins/resurrect".source =
-    "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect";
-  environment.etc."tmux-plugins/continuum".source =
-    "${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum";
 
   # State version
   system.stateVersion = "25.11";
