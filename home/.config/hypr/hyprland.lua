@@ -5,12 +5,8 @@
 ---- MONITORS ----
 ------------------
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({
-    output   = "",
-    mode     = "highres",
-    position = "auto",
-    scale    = 2.5,
-})
+-- DMS-managed outputs (auto-generated at ~/.config/hypr/dms/outputs.lua)
+require("dms.outputs")
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
