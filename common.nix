@@ -169,6 +169,7 @@
     dotnet-sdk_10 # .NET 10 SDK
     tailwindcss_4 # Tailwindcss V4 Cli
     openvpn # OpenVPN client for office VPN
+    remmina # GUI remote desktop client (RDP/VNC) with saved session profiles
     nixfmt # Nix File formatter
     btop # TUI system monitor for CPU/RAM/disk/network
     unzip # File compression utility
