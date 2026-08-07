@@ -70,6 +70,25 @@ local function chrome_cmd(profile_dir, extra_args)
         .. "--profile-directory=" .. shell_quote(profile_dir)
 end
 
+-- Chrome probes org.freedesktop.Notifications once at startup. If DMS is not
+-- ready yet, it falls back to windowed notification bubbles for the session.
+-- Wait for the notification bus (up to ~10s), then an extra fixed delay.
+local CHROME_START_DELAY_SECS = 3
+
+local function chrome_app(cmd)
+    local script = string.format(
+        "for i in $(seq 1 40); do "
+            .. "busctl --user status org.freedesktop.Notifications >/dev/null 2>&1 && break; "
+            .. "sleep 0.25; "
+            .. "done; "
+            .. "sleep %d; "
+            .. "exec %s",
+        CHROME_START_DELAY_SECS,
+        cmd
+    )
+    return "uwsm app -- sh -c " .. shell_quote(script)
+end
+
 hl.on("hyprland.start", function()
     -- Applications (workspace silent = open there without focusing).
     -- DMS is WantedBy=graphical-session.target and starts via UWSM/systemd.
@@ -77,22 +96,21 @@ hl.on("hyprland.start", function()
     hl.exec_cmd(app("discord"), { workspace = "2 silent" })
     hl.exec_cmd(app("spotify"), { workspace = "9 silent" })
 
-    -- Chrome: work (Kinova) on 3, personal on 4
-    -- Note: launch after DMS if Chrome notifications go to a windowed tray;
-    -- Chrome caches "no notification server" at first start for the session.
+    -- Chrome: work (Kinova) on 3, personal on 4, Chat app on 2.
+    -- Delayed until DMS notification server is up (see chrome_app above).
     local kinova = chrome_profile_dir("kinova")
     if kinova then
-        hl.exec_cmd(app(chrome_cmd(kinova)), { workspace = "3 silent" })
+        hl.exec_cmd(chrome_app(chrome_cmd(kinova)), { workspace = "3 silent" })
     end
 
     local personal = chrome_profile_dir("personal")
     if personal then
-        hl.exec_cmd(app(chrome_cmd(personal)), { workspace = "4 silent" })
+        hl.exec_cmd(chrome_app(chrome_cmd(personal)), { workspace = "4 silent" })
     end
 
     -- Google Chat as a dedicated app window on workspace 2
     hl.exec_cmd(
-        app(chrome_cmd("Default", "--app=https://chat.google.com")),
+        chrome_app(chrome_cmd("Default", "--app=https://chat.google.com")),
         { workspace = "2 silent" }
     )
 end)
