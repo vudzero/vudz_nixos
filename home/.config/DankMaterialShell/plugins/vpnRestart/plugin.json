@@ -1,0 +1,12 @@
+{
+    "id": "vpnRestart",
+    "name": "VPN Restart",
+    "description": "Bar button to disconnect and restart the Kinova OpenVPN3 session",
+    "version": "1.0.0",
+    "author": "matx",
+    "type": "widget",
+    "capabilities": ["dankbar-widget"],
+    "component": "./VpnRestartWidget.qml",
+    "icon": "vpn_key",
+    "dependencies": ["openvpn3"]
+}
