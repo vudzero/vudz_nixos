@@ -16,6 +16,12 @@
     # bumps only agents — not the rest of the system.
     # Intentionally does NOT follow nixpkgs (keeps Numtide's prebuilt cache).
     llm-agents.url = "github:numtide/llm-agents.nix";
+    # Unofficial wrap of Anthropic's official Linux .deb (Chat / Cowork / Code).
+    # Bumped with the other agents via ./deploy-nixos.sh --update-agents.
+    claude-desktop = {
+      url = "github:aaddrick/claude-desktop-debian";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Local checkout of the Kinova EtherCAT master fork (laptop only). Tracks
     # committed state on the `development` branch; run
     # `nix flake lock --update-input etherlab` after committing source changes.
@@ -30,6 +36,7 @@
       self,
       nixpkgs,
       llm-agents,
+      claude-desktop,
       etherlab,
       ...
     }:
@@ -39,7 +46,11 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = modules ++ [
-            { _module.args.llm-agents = llm-agents; }
+            {
+              _module.args = {
+                inherit llm-agents claude-desktop;
+              };
+            }
           ];
         };
     in

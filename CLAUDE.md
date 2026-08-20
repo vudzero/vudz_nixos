@@ -84,18 +84,22 @@ The following environment variables are set for Wayland compatibility:
 - `XCURSOR_THEME = "Adwaita"`
 
 ### AI Coding Agents
-Agents come from the separate flake input `llm-agents`
-(`github:numtide/llm-agents.nix`), installed via `common.nix`. That input does
-**not** follow `nixpkgs`, so agent versions and system package versions update
-independently:
+CLI agents come from the separate flake input `llm-agents`
+(`github:numtide/llm-agents.nix`). Claude Desktop comes from
+`claude-desktop` (`github:aaddrick/claude-desktop-debian`), which wraps
+Anthropic's official Linux `.deb`. Both are installed via `common.nix`.
+`llm-agents` does **not** follow `nixpkgs` (keeps Numtide's prebuilt cache);
+`claude-desktop` does follow `nixpkgs`. Agent versions and system package
+versions update independently:
 
 ```bash
-./deploy-nixos.sh --update-agents   # bump only claude / opencode / grok, then rebuild
+./deploy-nixos.sh --update-agents   # bump claude / opencode / grok / Claude Desktop, then rebuild
 ./deploy-nixos.sh --update-system   # bump only nixpkgs, then rebuild
 ./deploy-nixos.sh                   # rebuild current flake.lock (no version bumps)
 ```
 
-Installed agents: `claude-code`, `opencode`, `grok`. Add more from the
+Installed agents: `claude-code`, `opencode`, `grok`, `claude-desktop-fhs`.
+Add more CLI agents from the
 [llm-agents.nix catalogue](https://github.com/numtide/llm-agents.nix) in
 `common.nix` as `llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.<name>`.
 

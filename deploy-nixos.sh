@@ -18,10 +18,10 @@ usage() {
     echo "  (omit to auto-detect from hostname)"
     echo ""
     echo "Flags:"
-    echo "  --update-agents   Update only the llm-agents input (claude, opencode, grok),"
-    echo "                    then rebuild. Does not bump nixpkgs or other inputs."
+    echo "  --update-agents   Update llm-agents + claude-desktop (claude, opencode,"
+    echo "                    grok, Claude Desktop), then rebuild. Does not bump nixpkgs."
     echo "  --update-system   Update only the nixpkgs input, then rebuild."
-    echo "                    Does not bump llm-agents."
+    echo "                    Does not bump llm-agents or claude-desktop."
     echo ""
     echo "Examples:"
     echo "  $0                      # rebuild current lock (auto-detect machine)"
@@ -98,8 +98,8 @@ fi
 
 # Optionally bump individual flake inputs before rebuild
 if [ "$UPDATE_AGENTS" -eq 1 ]; then
-    echo "Updating llm-agents input only (AI coding agents)..."
-    nix flake update llm-agents
+    echo "Updating llm-agents + claude-desktop inputs (AI coding agents)..."
+    nix flake update llm-agents claude-desktop
     echo ""
 fi
 

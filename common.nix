@@ -3,6 +3,7 @@
   config,
   pkgs,
   llm-agents,
+  claude-desktop,
   ...
 }:
 
@@ -156,6 +157,7 @@
     carapace # Multi-shell completion generator
     zsh-completions # Additional zsh completion definitions
     nodejs # JavaScript runtime (needed for Mason LSP servers)
+    bun # JavaScript runtime and package manager
     clang-tools # C/C++ language server (includes clangd)
     cmake # Cross-platform build system
     gnumake # GNU Make build tool
@@ -174,13 +176,15 @@
     btop # TUI system monitor for CPU/RAM/disk/network
     unzip # File compression utility
     herdr # Agent multiplexer (tmux-like UI for coding agents)
-    # AI coding agents from flake input llm-agents (numtide/llm-agents.nix).
-    # Versions track that input only — not nixpkgs. Update with:
+    # AI coding agents. Versions track the llm-agents / claude-desktop
+    # flake inputs — not nixpkgs. Update with:
     #   ./deploy-nixos.sh --update-agents
-    # or: nix flake update llm-agents && ./deploy-nixos.sh
+    # or: nix flake update llm-agents claude-desktop && ./deploy-nixos.sh
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.grok
+    # Official Linux Claude Desktop .deb, FHS-wrapped for MCP (npx/uvx/docker).
+    claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
     python314 # Python3 runtime
     sound-theme-freedesktop # Freedesktop sound theme for system sounds
     openvpn3 # Open VPN 3 Client
