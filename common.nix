@@ -83,7 +83,6 @@
       "wheel"
       "docker"
       "libvirtd"
-      "vmware"
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [ ];
@@ -110,12 +109,6 @@
       package = pkgs.qemu_kvm;
       swtpm.enable = true; # TPM emulation for Windows 11
     };
-  };
-
-  # Enable VMware Workstation
-  virtualisation.vmware.host = {
-    enable = true;
-    package = pkgs.vmware-workstation;
   };
 
   environment.variables = {
