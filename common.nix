@@ -201,6 +201,12 @@
   # Enable nix-ld for running prebuilt binaries (.run files, etc.)
   programs.nix-ld.enable = true;
 
+  # Run AppImages via appimage-run (FHS + FUSE). binfmt lets chmod +x files execute directly.
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
   # Enable DankMaterialShell (DMS) — a complete desktop shell for Wayland
   programs.dms-shell = {
     enable = true;
