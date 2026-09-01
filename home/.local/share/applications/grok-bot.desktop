@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Grok Bot
+Comment=Grok Bot desktop agent
+Exec=appimage-run /home/matx/Applications/Grok_Bot.AppImage --no-sandbox %U
+Icon=/home/matx/.local/share/icons/grok-bot.png
+Terminal=false
+StartupWMClass=grok-bot
+Categories=Development;
+Keywords=ai;grok;bot;agent;
+MimeType=x-scheme-handler/grokbot;x-scheme-handler/sand;
