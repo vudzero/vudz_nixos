@@ -185,6 +185,7 @@
     pdfarranger # Edit pdf pages
     kdePackages.okular # Fill PDF forms and annotate documents
     tableplus # Database manager
+    postman # API development desktop app
     libsecret # Secret storage library for applications
   ];
 

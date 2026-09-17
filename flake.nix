@@ -22,8 +22,8 @@
       url = "github:aaddrick/claude-desktop-debian";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Local checkout of the Kinova EtherCAT master fork (laptop only). Tracks
-    # committed state on the `development` branch; run
+    # Local checkout of the Kinova EtherCAT master fork (laptop + framework).
+    # Tracks committed state on the `development` branch; run
     # `nix flake lock --update-input etherlab` after committing source changes.
     etherlab = {
       url = "git+file:///home/matx/src/etherlab_master?ref=development";
@@ -73,6 +73,7 @@
             ./machines/framework/hardware-configuration.nix
             ./machines/framework/configuration.nix
             ./common.nix
+            { _module.args.etherlab = etherlab; }
           ];
         };
 
@@ -83,8 +84,6 @@
             ./machines/laptop/hardware-configuration.nix
             ./machines/laptop/configuration.nix
             ./common.nix
-            # EtherCAT source, passed only to the laptop so other machines never
-            # force (and therefore never need to fetch) the etherlab input.
             { _module.args.etherlab = etherlab; }
           ];
         };

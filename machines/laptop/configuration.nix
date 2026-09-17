@@ -7,7 +7,13 @@
 }:
 
 {
-  imports = [ ./etherlab.nix ];
+  imports = [ ../../etherlab.nix ];
+
+  hardware.ethercat = {
+    interface = "enp195s0f0";
+    mac = "18:3d:2d:85:e3:2c";
+    ipv4Address = "192.168.1.13";
+  };
 
   networking.hostName = "laptop";
 

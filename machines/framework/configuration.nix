@@ -7,7 +7,19 @@
 {
   imports = [
     ../../gaming.nix # Load gaming configuration (Steam, MangoHud, RetroArch)
+    ../../etherlab.nix # IgH EtherCAT master (Kinova fork), same stack as laptop
   ];
+
+  # Match the laptop kernel so the EtherLab modules and a local
+  # ~/src/etherlab_master build use the same headers.
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+
+  # Workstation Ethernet (enp191s0). No static robot-network IP: this is
+  # the uplink. ethercat.conf still binds by MAC if the master is started.
+  hardware.ethercat = {
+    interface = "enp191s0";
+    mac = "9c:bf:0d:01:09:84";
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
