@@ -7,9 +7,10 @@ import qs.Modules.Plugins
 PluginComponent {
     id: root
 
+    // Use the profile name, not a machine-specific D-Bus object path.
     readonly property string restartCommand:
         "openvpn3 session-manage --disconnect --config kinova-vpn; " +
-        "openvpn3 session-start --config-path /net/openvpn/v3/configuration/003399e0xfb5bx47b6xba8exf595f75a4a33"
+        "openvpn3 session-start --config kinova-vpn"
 
     pillClickAction: function() {
         Quickshell.execDetached(["sh", "-c", root.restartCommand]);

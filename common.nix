@@ -147,6 +147,7 @@
     imv # Lightweight image viewer for Wayland
     mpv # Lightweight video player for Wayland
     nautilus # GNOME file manager
+    gnome-calculator # Simple GUI calculator
     carapace # Multi-shell completion generator
     zsh-completions # Additional zsh completion definitions
     nodejs # JavaScript runtime (needed for Mason LSP servers)
@@ -175,6 +176,7 @@
     # or: nix flake update llm-agents claude-desktop && ./deploy-nixos.sh
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
+    llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.grok
     # Official Linux Claude Desktop .deb, FHS-wrapped for MCP (npx/uvx/docker).
     claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs
