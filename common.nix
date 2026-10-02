@@ -175,7 +175,6 @@
     #   ./deploy-nixos.sh --update-agents
     # or: nix flake update llm-agents claude-desktop && ./deploy-nixos.sh
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
-    llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.grok
     # Official Linux Claude Desktop .deb, FHS-wrapped for MCP (npx/uvx/docker).
