@@ -45,6 +45,13 @@
   # Enable systemd-resolved for DNS management (required by openvpn3)
   services.resolved.enable = true;
 
+  # Enable Tailscale (uses systemd-resolved for MagicDNS). Run `sudo tailscale up` once to authenticate.
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client"; # Allow using exit nodes / subnet routes
+  };
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+
   # Block Spotify self-update domains
   networking.hosts = {
     "0.0.0.0" = [
