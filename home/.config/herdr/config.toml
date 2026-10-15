@@ -1,2 +1,5 @@
 [keys]
 prefix = "ctrl+space"
+switch_tab = "alt+1..9"
+previous_workspace = "alt+up"
+next_workspace = "alt+down"

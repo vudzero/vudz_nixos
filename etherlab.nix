@@ -54,6 +54,10 @@ let
       "--without-systemdsystemunitdir"
     ];
 
+    # The tool uses `stream >> (char *) ptr`, which C++20 (GCC 16's default)
+    # removed.
+    env.CXXFLAGS = "-O2 -std=gnu++17";
+
     enableParallelBuilding = true;
 
     meta = {

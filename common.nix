@@ -52,8 +52,28 @@
   };
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
+  # Trust Caddy's internal CA (compose.yml) so browsers accept its certs
+  security.pki.certificateFiles = [ ./proxy/caddy-root.crt ];
+
+  # Local Caddy (compose.yml) terminates TLS and proxies to the VM
   # Block Spotify self-update domains
   networking.hosts = {
+    "127.0.0.1" = [
+      "testmcp.kinovaapps.com"
+      "kore-local.kinovaapps.com"
+      "auth.kore-local.kinovaapps.com"
+      "example-blazor.kore-local.kinovaapps.com"
+      "hub-local.kinovaapps.com"
+      "auth.hub-local.kinovaapps.com"
+      "example-blazor.hub-local.kinovaapps.com"
+      "example-nextjs.hub-local.kinovaapps.com"
+      "acumatica-mcp.hub-local.kinovaapps.com"
+      "codebeamer-mcp.hub-local.kinovaapps.com"
+      "jira-mcp.hub-local.kinovaapps.com"
+      "clm.hub-local.kinovaapps.com"
+      "budget.hub-local.kinovaapps.com"
+      "example-go.hub-local.kinovaapps.com"
+    ];
     "0.0.0.0" = [
       "upgrade.scdn.co"
       "upgrade.spotify.com"
@@ -141,6 +161,8 @@
     wl-clipboard # OS Clipboard
     wtype # Wayland typing tool
     jq # JSON processor for scripts
+    bind # DNS tools (nslookup, dig, host)
+    traceroute # Network path tracing
     hyprcursor # Cursor theme system for Hyprland
     rose-pine-hyprcursor # Rose Pine cursor theme for hyprcursor
     libnotify # Send desktop notifications (provides notify-send)
@@ -224,12 +246,6 @@
       enable = true;
       restartIfChanged = true;
     };
-
-    enableSystemMonitoring = true;
-    enableDynamicTheming = true;
-    enableAudioWavelength = true;
-    enableCalendarEvents = true;
-    enableClipboardPaste = true;
   };
 
   # Enable GNOME Keyring for secure password storage

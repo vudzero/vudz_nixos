@@ -10,3 +10,8 @@ kinova.ovpn
 
 # Note: hardware-configuration.nix files ARE tracked in git
 # since they're organized by machine directory (machines/desktop/, machines/laptop/, etc.)
+proxy/caddy-data/
+
+# Compose secrets and romm data
+.env
+romm/
