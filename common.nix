@@ -217,6 +217,7 @@
     tableplus # Database manager
     postman # API development desktop app
     libsecret # Secret storage library for applications
+    nssTools # NSS tools (provides certutil for managing browser cert databases)
   ];
 
   # Enable zsh with plugins
