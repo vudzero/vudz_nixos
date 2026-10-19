@@ -246,3 +246,11 @@ hl.window_rule({
     size   = { 1200, 800 },
     center = true,
 })
+
+-- Omasnap screenshot overlay - no animation. Do NOT add no_screen_share:
+-- Hyprland blacks out the whole layer rect, which breaks scroll capture.
+hl.layer_rule({
+    match = { namespace = "^omasnap$" },
+    no_anim = true,
+    animation = "none",
+})

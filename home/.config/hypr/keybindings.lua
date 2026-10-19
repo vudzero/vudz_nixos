@@ -32,22 +32,15 @@ hl.bind(
 -- Lock and suspend
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("dms ipc call lock lock"))
 
--- Screenshots
-hl.bind(
-    mainMod .. " + SHIFT + S",
-    hl.dsp.exec_cmd(
-        'grim -g "$(slurp -w 0)" - | wl-copy && notify-send "Screenshot copied" "Copied to clipboard"'
-    )
-)
-hl.bind(
-    "Print",
-    hl.dsp.exec_cmd(
-        'grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png && notify-send "Screenshot saved" "Saved to ~/Pictures/"'
-    )
-)
+-- Screenshots (omasnap)
+-- Region -> clipboard (no preview/editor)
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("omasnap --capture-region --copy"))
+-- Full monitor -> saved to ~/Pictures/Screenshots
+hl.bind("Print", hl.dsp.exec_cmd("omasnap --capture-fullscreen --save"))
+-- Region -> annotate before output
 hl.bind(
     mainMod .. " + SHIFT + E",
-    hl.dsp.exec_cmd('grim -g "$(slurp -w 0)" - | swappy -f -')
+    hl.dsp.exec_cmd("omasnap --capture-region --editor overlay")
 )
 
 -- Screen recording (10 seconds of selected area)

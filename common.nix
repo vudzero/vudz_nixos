@@ -169,10 +169,8 @@
     spotify # Music player
     discord # Chat tool
     playerctl # Media player control for Spotify and other players
-    grim # Screenshot tool for Wayland
-    slurp # Select a region in Wayland compositors
-    swappy # Wayland native snapshot editing tool
     wl-screenrec # Screen recorder for Wayland (outputs mp4)
+    slurp # Select a region in Wayland compositors (used by screenrecord.sh)
     imv # Lightweight image viewer for Wayland
     mpv # Lightweight video player for Wayland
     nautilus # GNOME file manager
@@ -196,6 +194,7 @@
       dotnetCorePackages.sdk_11_0
     ]) # .NET 10 + 11 SDKs side by side
     tailwindcss_4 # Tailwindcss V4 Cli
+    (callPackage ./omasnap.nix { }) # Wayland screenshot + annotation overlay (Hyprland)
     openvpn # OpenVPN client for office VPN
     remmina # GUI remote desktop client (RDP/VNC) with saved session profiles
     nixfmt # Nix File formatter
