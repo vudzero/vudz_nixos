@@ -191,7 +191,10 @@
     pkgconf # Compiler/linker flags helper (provides pkgconf)
     pkg-config # Provides the pkg-config command (pkgconf backend)
     config.boot.kernelPackages.kernel.dev # Kernel build headers matching the running kernel
-    dotnet-sdk_10 # .NET 10 SDK
+    (dotnetCorePackages.combinePackages [
+      dotnetCorePackages.sdk_10_0
+      dotnetCorePackages.sdk_11_0
+    ]) # .NET 10 + 11 SDKs side by side
     tailwindcss_4 # Tailwindcss V4 Cli
     openvpn # OpenVPN client for office VPN
     remmina # GUI remote desktop client (RDP/VNC) with saved session profiles
