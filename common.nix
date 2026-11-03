@@ -193,6 +193,7 @@
       dotnetCorePackages.sdk_10_0
       dotnetCorePackages.sdk_11_0
     ]) # .NET 10 + 11 SDKs side by side
+    go # Go toolchain
     tailwindcss_4 # Tailwindcss V4 Cli
     (callPackage ./omasnap.nix { }) # Wayland screenshot + annotation overlay (Hyprland)
     openvpn # OpenVPN client for office VPN
