@@ -29,8 +29,10 @@ precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%F{yellow}(%b)%f '
 setopt PROMPT_SUBST
 
-# Prompt with git branch
-PROMPT='%F{cyan}%~%f ${vcs_info_msg_0_}%# '
+# Two-line prompt: path + git branch on the first line, the % always at the
+# left edge of the second line so deep paths never push the cursor right.
+PROMPT='%F{cyan}%~%f ${vcs_info_msg_0_}
+%# '
 
 # Aliases
 alias ls='ls -l --color=auto'

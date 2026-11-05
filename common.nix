@@ -149,6 +149,7 @@
     neovim # Text Editor
     zsh # Terminal Shell
     alacritty # Terminal emulator
+    ghostty # GPU-accelerated terminal emulator
     google-chrome # Browser
     firefox # Browser
     quickshell # Wayland shell toolkit (bar/panel)

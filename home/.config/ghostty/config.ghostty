@@ -1,0 +1,45 @@
+# Ghostty configuration — mirrors home/.config/alacritty/alacritty.toml
+
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 12
+
+# Window
+background-opacity = 1.0
+window-padding-x = 10
+window-padding-y = 10
+
+# Colors (Alacritty defaults + #1e1e2e background)
+background = #1e1e2e
+foreground = #d8d8d8
+
+palette = 0=#181818
+palette = 1=#ac4242
+palette = 2=#90a959
+palette = 3=#f4bf75
+palette = 4=#6a9fb5
+palette = 5=#aa759f
+palette = 6=#75b5aa
+palette = 7=#d8d8d8
+palette = 8=#6b6b6b
+palette = 9=#c55555
+palette = 10=#aac474
+palette = 11=#feca88
+palette = 12=#82b8c8
+palette = 13=#c28cb8
+palette = 14=#93d3c3
+palette = 15=#f8f8f8
+
+# Cursor: Alacritty default is a block using the foreground color
+cursor-color = #d8d8d8
+cursor-text = #1e1e2e
+cursor-style = block
+cursor-style-blink = false
+
+# Selection: Alacritty default is inverted colors
+selection-background = #d8d8d8
+selection-foreground = #1e1e2e
+
+# Super+C / Super+V copy/paste (same as Alacritty)
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
