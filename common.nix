@@ -138,6 +138,9 @@
     };
   };
 
+  # GUI for managing libvirt VMs (also enables dconf)
+  programs.virt-manager.enable = true;
+
   environment.variables = {
     # Force Electron apps (like VSCode) to use Wayland and proper scaling
     NIXOS_OZONE_WL = "1";
