@@ -199,6 +199,7 @@
     ]) # .NET 10 + 11 SDKs side by side
     go # Go toolchain
     google-cloud-sdk # gcloud CLI for Google Cloud
+    mariadb.client # mysql CLI client (MariaDB client, MySQL-compatible)
     tailwindcss_4 # Tailwindcss V4 Cli
     (callPackage ./omasnap.nix { }) # Wayland screenshot + annotation overlay (Hyprland)
     openvpn # OpenVPN client for office VPN
