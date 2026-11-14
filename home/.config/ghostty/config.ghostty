@@ -44,6 +44,6 @@ selection-foreground = #1e1e2e
 keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
 
-# Mouse wheel: 1 scroll event per notch (default is discrete:3).
+# Mouse wheel: scale down scroll events per notch (default is discrete:3).
 # Neovim moves 1 line per event (mousescroll=ver:1), so this keeps scrolling gentle.
-mouse-scroll-multiplier = discrete:1
+mouse-scroll-multiplier = discrete:0.5
