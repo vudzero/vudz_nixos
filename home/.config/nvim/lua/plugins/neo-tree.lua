@@ -8,7 +8,7 @@ return {
     "MunifTanjim/nui.nvim",
   },
   keys = {
-    { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Toggle file explorer" },
+    { "<leader>e", "<cmd>Neotree toggle reveal<cr>", desc = "Toggle file explorer" },
   },
   lazy = false, -- Ensure neo-tree loads on startup (not lazy loaded)
   priority = 1000, -- Load early to hijack netrw
@@ -87,8 +87,11 @@ return {
         },
       },
       window = {
-        position = "left",
-        width = 30,
+        position = "float",
+        popup = {
+          size = { height = "80%", width = "60%" },
+          position = "50%",
+        },
         mapping_options = {
           noremap = true,
           nowait = true,
@@ -177,8 +180,8 @@ return {
         {
           event = "file_opened",
           handler = function()
-            -- Auto close after file opened
-            -- require("neo-tree").close_all()
+            -- Close the dialog after a file is opened
+            require("neo-tree.command").execute({ action = "close" })
           end,
         },
         {

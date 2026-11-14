@@ -36,6 +36,8 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>x", "<cmd>bp|bd #<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<S-h>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>X", "<cmd>bd!<CR>", { desc = "Force close buffer" })
 
 -- Telescope file search with Ctrl+P
@@ -86,6 +88,48 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank({ timeout = 200 })
   end,
+})
+
+-- Auto-close buffers whose file was deleted on disk (rm, git checkout, ...)
+-- Only touches buffers that existed on disk at some point and are unmodified,
+-- so brand-new unsaved files (`nvim newfile.txt`) and unsaved edits are safe.
+local deleted_group = vim.api.nvim_create_augroup("close_deleted_buffers", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
+  group = deleted_group,
+  callback = function(args)
+    vim.b[args.buf].file_seen = true
+  end,
+})
+
+local function close_deleted_buffers()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf)
+      and vim.bo[buf].buflisted
+      and vim.bo[buf].buftype == ""
+      and vim.b[buf].file_seen
+      and not vim.bo[buf].modified
+    then
+      local name = vim.api.nvim_buf_get_name(buf)
+      if name ~= "" and not vim.uv.fs_stat(name) then
+        -- Move any window showing it to another buffer so the layout survives
+        for _, win in ipairs(vim.fn.win_findbuf(buf)) do
+          vim.api.nvim_win_call(win, function()
+            vim.cmd("silent! bnext")
+            if vim.api.nvim_get_current_buf() == buf then
+              vim.cmd("enew")
+            end
+          end)
+        end
+        pcall(vim.api.nvim_buf_delete, buf, { force = true })
+      end
+    end
+  end
+end
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  group = deleted_group,
+  callback = close_deleted_buffers,
 })
 
 -- Configuration loaded successfully
