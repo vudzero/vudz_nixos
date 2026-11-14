@@ -9,6 +9,7 @@ vim.g.maplocalleader = " "
 vim.opt.number = true           -- Show line numbers
 vim.opt.relativenumber = false  -- Show absolute line numbers only
 vim.opt.mouse = "a"             -- Enable mouse support
+vim.opt.mousescroll = "ver:1,hor:6" -- Mouse wheel scrolls 1 line per tick (default 3)
 vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 vim.opt.ignorecase = true       -- Case insensitive search
 vim.opt.smartcase = true        -- Case sensitive if uppercase present

@@ -18,20 +18,6 @@ return {
     vim.g.loaded_netrwPlugin = 1
   end,
   config = function()
-    -- Auto-open neo-tree on startup after setup
-    vim.api.nvim_create_autocmd("VimEnter", {
-      callback = function()
-        local argc = vim.fn.argc()
-        local argv = vim.fn.argv(0)
-        -- Open neo-tree if:
-        -- 1. No arguments (plain nvim)
-        -- 2. Opening a directory (nvim .)
-        if argc == 0 or (argc == 1 and vim.fn.isdirectory(argv) == 1) then
-          vim.cmd("Neotree dir=" .. vim.fn.getcwd())
-        end
-      end,
-    })
-    
     require("neo-tree").setup({
       close_if_last_window = false,
       popup_border_style = "rounded",
@@ -189,6 +175,10 @@ return {
           handler = function()
             -- Show cursor line in tree
             vim.opt_local.cursorline = true
+            -- Keep a margin below/above the cursor so the list scrolls one
+            -- line at a time instead of jumping when the cursor hits an edge
+            vim.opt_local.scrolloff = 8
+            vim.opt_local.scrolljump = 1
           end,
         },
       },
