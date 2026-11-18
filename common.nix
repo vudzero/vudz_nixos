@@ -204,6 +204,7 @@
     (callPackage ./omasnap.nix { }) # Wayland screenshot + annotation overlay (Hyprland)
     openvpn # OpenVPN client for office VPN
     remmina # GUI remote desktop client (RDP/VNC) with saved session profiles
+    rustdesk-flutter # Remote desktop client/server (TeamViewer alternative)
     nixfmt # Nix File formatter
     btop # TUI system monitor for CPU/RAM/disk/network
     unzip # File compression utility
