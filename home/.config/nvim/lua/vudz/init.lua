@@ -35,7 +35,22 @@ vim.opt.autoread = true         -- Auto-reload files changed outside nvim
 -- Key Mappings
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
-vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+-- Smart close: close the window if split, else close the buffer. Never quits
+-- Neovim (the last buffer is replaced by an empty one). Always asks before
+-- discarding unsaved changes.
+vim.keymap.set("n", "<leader>q", function()
+  local normal_wins = 0
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    if vim.api.nvim_win_get_config(win).relative == "" then
+      normal_wins = normal_wins + 1
+    end
+  end
+  if vim.bo.filetype == "neo-tree" or normal_wins > 1 then
+    vim.cmd("confirm close")
+  else
+    vim.cmd("confirm bdelete")
+  end
+end, { desc = "Close window/buffer" })
 vim.keymap.set("n", "<leader>x", "<cmd>bp|bd #<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<S-h>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next buffer" })

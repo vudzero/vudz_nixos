@@ -44,7 +44,7 @@ return {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      { "<leader>b", "<cmd>Telescope buffers sort_mru=true ignore_current_buffer=true<cr>", desc = "Open buffers" },
+      { "<leader>b", "<cmd>Telescope buffers sort_mru=true<cr>", desc = "Open buffers" },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
     },
@@ -96,6 +96,17 @@ return {
         },
       })
     end,
+  },
+
+  -- Vertical scrollbar on the right (with diagnostic/search/git marks)
+  {
+    "lewis6991/satellite.nvim",
+    event = "VeryLazy",
+    opts = {
+      current_only = true,
+      winblend = 30,
+      excluded_filetypes = { "neo-tree", "TelescopePrompt" },
+    },
   },
 
   -- Add your plugins here

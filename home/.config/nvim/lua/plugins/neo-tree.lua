@@ -8,7 +8,20 @@ return {
     "MunifTanjim/nui.nvim",
   },
   keys = {
-    { "<leader>e", "<cmd>Neotree toggle reveal<cr>", desc = "Toggle file explorer" },
+    {
+      "<leader>e",
+      function()
+        require("neo-tree.command").execute({ toggle = true, reveal = true })
+        -- When the dialog was just opened, start the filter box right away
+        -- (same as pressing "/" in the tree) so typing filters the tree.
+        vim.defer_fn(function()
+          if vim.bo.filetype == "neo-tree" then
+            vim.api.nvim_feedkeys("/", "m", false)
+          end
+        end, 100)
+      end,
+      desc = "Toggle file explorer (with search)",
+    },
   },
   lazy = false, -- Ensure neo-tree loads on startup (not lazy loaded)
   priority = 1000, -- Load early to hijack netrw
@@ -113,10 +126,8 @@ return {
           hide_hidden = false,
           hide_by_name = {},
           always_show = { ".gitignore" },
-          never_show = { ".git" },
+          never_show = { ".git", "node_modules" },
           hide_by_pattern = {},
-          always_show = {},
-          never_show = {},
           never_show_by_pattern = {},
         },
         follow_current_file = {
