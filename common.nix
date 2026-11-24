@@ -52,6 +52,35 @@
   };
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
+  # Printing: CUPS (web UI at http://localhost:631) + Avahi for network printer discovery
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+  # HP DeskJet 3700 via driverless IPP Everywhere (the HP raster driver silently prints nothing)
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "HP_DeskJet_3700";
+        deviceUri = "ipp://HP842AFDAE9F6E.local/ipp/print";
+        model = "everywhere";
+      }
+      {
+        # Chrome's "Black and white" only sends ColorModel=Gray, which the printer ignores
+        # (the queue's print-color-mode=color wins). Pick this queue for B&W instead.
+        name = "HP_DeskJet_3700_BW";
+        deviceUri = "ipp://HP842AFDAE9F6E.local/ipp/print";
+        model = "everywhere";
+        ppdOptions = {
+          print-color-mode-default = "monochrome";
+        };
+      }
+    ];
+    ensureDefaultPrinter = "HP_DeskJet_3700";
+  };
+
   # Trust Caddy's internal CA (compose.yml) so browsers accept its certs
   security.pki.certificateFiles = [ ./proxy/caddy-root.crt ];
 
