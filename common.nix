@@ -245,6 +245,7 @@
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2
     llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli # Google Antigravity CLI (`agy`)
+    claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs # Claude Desktop (FHS wrapper for MCP servers)
     python314 # Python3 runtime
     sound-theme-freedesktop # Freedesktop sound theme for system sounds
     openvpn3 # Open VPN 3 Client
